@@ -1,0 +1,37 @@
+name: health_balance
+description: A new Flutter application.
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  flutter_bloc:
+  freezed_annotation:
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  equatable:
+  hive:
+  build_runner:
+  freezed:
+  path_provider:
+
+
+flutter:
+
+  uses-material-design: true
+
+  fonts:
+   - family:  HealthBalanceIcons
+     fonts:
+       - asset: assets/fonts/HealthBalanceIcons.ttf
