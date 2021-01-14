@@ -1,5 +1,8 @@
 import 'package:hive/hive.dart';
 
+part 'user_data.g.dart';
+
+@HiveType(typeId: 2)
 class UserData extends HiveObject {
   @HiveField(0)
   final double weight;

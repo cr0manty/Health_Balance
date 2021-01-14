@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_svg/svg.dart';
 
 @immutable
 class GenderButton extends StatelessWidget {
   final VoidCallback onTap;
-  final IconData icon;
+  final String icon;
   final Color color;
   final Color iconColor;
   final bool isSelected;
@@ -25,15 +26,15 @@ class GenderButton extends StatelessWidget {
       child: Container(
         width: 170,
         height: 60,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           color: isSelected ? iconColor : color,
-          borderRadius: BorderRadius.circular(
-            7,
-          ),
+          borderRadius: BorderRadius.circular(7),
         ),
-        child: Icon(
-          icon,
-          size: 45,
+        child: SvgPicture.asset(
+          'assets/icons/$icon.svg',
+          height: 45,
+          width: 45,
           color: isSelected ? color : iconColor,
         ),
       ),

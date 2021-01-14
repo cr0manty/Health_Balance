@@ -11,9 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  flutter_bloc:
   freezed_annotation:
+  flutter_svg:
 
 
 dev_dependencies:
@@ -22,16 +21,18 @@ dev_dependencies:
 
   equatable:
   hive:
+  hive_generator:
   build_runner:
   freezed:
   path_provider:
+  formz:
+  flutter_bloc:
+  intl:
 
 
 flutter:
 
   uses-material-design: true
-
-  fonts:
-   - family:  HealthBalanceIcons
-     fonts:
-       - asset: assets/fonts/HealthBalanceIcons.ttf
+  assets:
+    - assets/icons/
+    - assets/images/

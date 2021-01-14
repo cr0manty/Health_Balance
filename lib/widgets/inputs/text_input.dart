@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:health_balance/utils/constants.dart';
 
 @immutable
 class TextInput extends StatelessWidget {
@@ -42,23 +43,23 @@ class TextInput extends StatelessWidget {
             style: const TextStyle(
               fontSize: 20.0,
               height: 1.5,
-              color: Colors.white,
+              color: Colors.black,
             ),
             onEditingComplete: onEditingComplete,
             textInputAction: textInputAction,
             keyboardType: keyboardType,
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 16,
               ),
-              border: UnderlineInputBorder(
+              border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.all(
                   Radius.circular(9.0),
                 ),
               ),
-              fillColor: Color(0xffe0e7f1),
+              fillColor: AppColors.inputBackground,
             ),
           ),
           suffix ?? const SizedBox.shrink(),

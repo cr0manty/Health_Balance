@@ -34,19 +34,11 @@ class HealthBalanceApp extends StatefulWidget {
 
 class _HealthBalanceAppState extends State<HealthBalanceApp> {
   final AppRouter _appRouter = AppRouter();
-  UserBLoC _userBLoC;
 
   @override
   void dispose() {
-    _userBLoC?.close();
     _appRouter?.dispose();
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _userBLoC = UserBLoC(const UserRepository());
   }
 
   @override
@@ -64,15 +56,16 @@ class _HealthBalanceAppState extends State<HealthBalanceApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserBLoC>.value(
-      value: _userBLoC,
+      value: _appRouter.userBLoC,
       child: MaterialApp(
         navigatorKey: NavigationManager.instance.navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            backgroundColor: AppColors.background,
-            fontFamily: 'SF Pro Display'),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          backgroundColor: AppColors.background,
+          fontFamily: 'SF Pro Display',
+        ),
         onGenerateRoute: _appRouter.onGenerateRoute,
       ),
     );

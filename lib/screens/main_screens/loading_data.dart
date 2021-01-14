@@ -61,7 +61,9 @@ class _LoadingDataScreenState extends State<LoadingDataScreen> {
           if (state is EmptyUserState) {
             NavigationManager.instance.pushNamedAndRemoveUntil('/user_info');
           } else if (state is ExistUserState) {
-            NavigationManager.instance.pushNamedAndRemoveUntil('/home');
+            NavigationManager.instance.pushNamedAndRemoveUntil(
+              state.user.hasData ? '/home' : '/user_additional_info',
+            );
           }
         },
         child: Center(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:health_balance/utils/constants.dart';
-import 'package:health_balance/widgets/text_input.dart';
+import 'package:health_balance/widgets/inputs/text_input.dart';
 
 @immutable
 class UserAdditionInfoScreen extends StatefulWidget {
