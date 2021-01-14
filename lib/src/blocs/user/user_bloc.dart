@@ -30,6 +30,8 @@ abstract class UserState with _$UserState {
   const factory UserState.empty() = EmptyUserState;
 
   const factory UserState.exist(User user) = ExistUserState;
+
+  const factory UserState.existFull(User user) = ExistFullUserState;
 }
 
 class UserBLoC extends Bloc<UserEvent, UserState> {
@@ -71,10 +73,12 @@ class UserBLoC extends Bloc<UserEvent, UserState> {
             const Duration(seconds: 30),
           );
 
-      if (user != null) {
-        yield UserState.exist(user);
-      } else {
+      if (user == null) {
         yield const UserState.empty();
+      } else if (user.hasData) {
+        yield UserState.existFull(user);
+      } else {
+        yield UserState.exist(user);
       }
     } on TimeoutException {
       yield const UserState.empty();
@@ -90,10 +94,12 @@ class UserBLoC extends Bloc<UserEvent, UserState> {
             const Duration(seconds: 30),
           );
 
-      if (user?.hasData ?? false) {
-        yield UserState.exist(user);
-      } else {
+      if (user == null) {
         yield const UserState.empty();
+      } else if (user.hasData) {
+        yield UserState.existFull(user);
+      } else {
+        yield UserState.exist(user);
       }
     } on TimeoutException {
       yield const UserState.empty();

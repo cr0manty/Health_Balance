@@ -27,4 +27,6 @@ class WristGirth extends FormzInput<String, WristGirthValidationError> {
   bool get _isNotDigit {
     return double.parse(value, (e) => null) == null;
   }
+
+  double get doubleValue => double.parse(value, (_) => null);
 }

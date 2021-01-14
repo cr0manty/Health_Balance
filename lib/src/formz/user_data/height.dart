@@ -2,13 +2,13 @@ import 'package:formz/formz.dart';
 
 enum HeightValidationError { empty, isNotDigit, small, large }
 
-class Weight extends FormzInput<String, HeightValidationError> {
+class Height extends FormzInput<String, HeightValidationError> {
   static const _minHeight = 140;
   static const _maxHeight = 194;
 
-  const Weight.pure() : super.pure('');
+  const Height.pure() : super.pure('');
 
-  const Weight.dirty([String value = '']) : super.dirty(value);
+  const Height.dirty([String value = '']) : super.dirty(value);
 
   @override
   HeightValidationError validator(String value) {
@@ -27,4 +27,6 @@ class Weight extends FormzInput<String, HeightValidationError> {
   bool get _isNotDigit {
     return double.parse(value, (e) => null) == null;
   }
+
+  double get doubleValue => double.parse(value, (_) => null);
 }

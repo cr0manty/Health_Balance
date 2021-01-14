@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/router/router.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
-import 'package:health_balance/src/repositories/user_repository.dart';
 import 'package:health_balance/utils/constants.dart';
 
 @immutable

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable
-class DatePicker extends StatelessWidget {
+class DatePicker extends StatefulWidget {
   final DateTime currentDate;
   final ValueChanged<DateTime> onDateTimeChanged;
 
@@ -15,26 +15,52 @@ class DatePicker extends StatelessWidget {
         super(key: key);
 
   @override
+  _DatePickerState createState() => _DatePickerState();
+
+  @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) =>
       super.debugFillProperties(
         properties
           ..add(
             StringProperty(
               'description',
-              'DatePicker StatelessWidget',
+              'DatePicker StatefulWidget',
+            ),
+          ),
+      );
+}
+
+class _DatePickerState extends State<DatePicker> {
+  final DateTime _currentDate = DateTime.now();
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) =>
+      super.debugFillProperties(
+        properties
+          ..add(
+            StringProperty(
+              'description',
+              '_DatePickerState State<DatePicker>',
             ),
           ),
       );
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => widget.onDateTimeChanged(widget.currentDate),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CupertinoDatePicker(
-      initialDateTime: currentDate,
-      onDateTimeChanged: onDateTimeChanged,
+      initialDateTime: widget.currentDate,
+      onDateTimeChanged: widget.onDateTimeChanged,
       use24hFormat: true,
-      maximumDate: currentDate,
+      maximumDate: _currentDate.add(const Duration(days: 1)),
       minimumYear: 1000,
-      maximumYear: currentDate.year,
+      maximumYear: _currentDate.year,
       mode: CupertinoDatePickerMode.date,
     );
   }

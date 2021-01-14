@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
@@ -9,16 +7,16 @@ import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/utils/constants.dart';
 
 @immutable
-class LoadingDataScreen extends StatefulWidget {
-  const LoadingDataScreen({
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({
     Key key,
   }) : super(key: key);
 
-  static _LoadingDataScreenState of(BuildContext context) =>
-      context.findAncestorStateOfType<_LoadingDataScreenState>();
+  static _SplashScreenState of(BuildContext context) =>
+      context.findAncestorStateOfType<_SplashScreenState>();
 
   @override
-  State<LoadingDataScreen> createState() => _LoadingDataScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) =>
@@ -27,13 +25,13 @@ class LoadingDataScreen extends StatefulWidget {
           ..add(
             StringProperty(
               'description',
-              'LoadingDataScreen StatefulWidget',
+              'SplashScreen StatefulWidget',
             ),
           ),
       );
 }
 
-class _LoadingDataScreenState extends State<LoadingDataScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -47,7 +45,7 @@ class _LoadingDataScreenState extends State<LoadingDataScreen> {
           ..add(
             StringProperty(
               'description',
-              '_LoadingDataScreenState State<LoadingDataScreen>',
+              '_SplashScreenState State<SplashScreen>',
             ),
           ),
       );
@@ -62,8 +60,10 @@ class _LoadingDataScreenState extends State<LoadingDataScreen> {
             NavigationManager.instance.pushNamedAndRemoveUntil('/user_info');
           } else if (state is ExistUserState) {
             NavigationManager.instance.pushNamedAndRemoveUntil(
-              state.user.hasData ? '/home' : '/user_additional_info',
+              '/user_additional_info',
             );
+          } else if (state is ExistFullUserState) {
+            NavigationManager.instance.pushNamedAndRemoveUntil('/home');
           }
         },
         child: Center(
