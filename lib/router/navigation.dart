@@ -40,8 +40,8 @@ class NavigationManager {
     );
   }
 
-  Future<dynamic> pushReplacement(Route route) {
-    return _navigatorKey.currentState.pushReplacement(route);
+  Future<dynamic> pushReplacement(String route) {
+    return _navigatorKey.currentState.pushReplacementNamed(route);
   }
 
   void popUntilAndPushNamed(

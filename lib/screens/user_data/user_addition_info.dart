@@ -52,6 +52,7 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
       );
 
   void _nextStep() {
+    FocusScope.of(context).unfocus();
     _userAdditionDataBLoC.add(
       const UserAdditionDataEvent.submit(),
     );
@@ -91,6 +92,8 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: BlocListener<UserBLoC, UserState>(
+        listenWhen: (previous, current) =>
+            NavigationManager.instance.route != '/',
         listener: (context, state) {
           if (state is ExistFullUserState) {
             NavigationManager.instance.pushNamedAndRemoveUntil('/');

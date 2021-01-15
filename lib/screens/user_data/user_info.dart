@@ -55,7 +55,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       body: BlocListener<UserBLoC, UserState>(
         listener: (context, state) {
           if (state is ExistUserState) {
-            NavigationManager.instance.pushNamed('/user_additional_info');
+            NavigationManager.instance.pushReplacement('/user_additional_info');
           }
         },
         child: GestureDetector(
@@ -106,6 +106,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 focus: _nameFocus,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
+                onEditingComplete: FocusScope.of(context).unfocus,
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 30.0, left: 30.0, bottom: 16.0),
@@ -147,6 +148,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 },
                 child: TextInput(
                   controller: _birthDateController,
+                  onEditingComplete: FocusScope.of(context).unfocus,
                   enabled: false,
                 ),
               ),
@@ -179,6 +181,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             iconColor: const Color(0xff5392f9),
                             isSelected: state.gender.value == Gender.male,
                             onTap: () {
+                              FocusScope.of(context).unfocus();
+
                               _userDataBLoC.add(
                                 const UserDataEvent.genderChanged(
                                   Gender.male,
@@ -193,6 +197,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             iconColor: const Color(0xffff60b2),
                             isSelected: state.gender.value == Gender.female,
                             onTap: () {
+                              FocusScope.of(context).unfocus();
+
                               _userDataBLoC.add(
                                 const UserDataEvent.genderChanged(
                                   Gender.female,
@@ -219,6 +225,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       ),
                       onPressed: state.isValid
                           ? () {
+                              FocusScope.of(context).unfocus();
+
                               _userDataBLoC.add(
                                 const UserDataEvent.submit(),
                               );

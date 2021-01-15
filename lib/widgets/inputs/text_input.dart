@@ -13,15 +13,16 @@ class TextInput extends StatelessWidget {
   final TextInputType keyboardType;
 
   const TextInput({
+    @required this.onEditingComplete,
     this.controller,
     this.focus,
     this.suffix,
     this.enabled = true,
-    this.onEditingComplete,
     this.textInputAction,
     this.keyboardType,
     Key key,
-  }) : super(key: key);
+  })  : assert(onEditingComplete != null, 'onEditingComplete must not be null'),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class TextInput extends StatelessWidget {
               height: 1.5,
               color: Colors.black,
             ),
-            onEditingComplete: onEditingComplete,
+            onSubmitted: (_) => onEditingComplete(),
             textInputAction: textInputAction,
             keyboardType: keyboardType,
             decoration: InputDecoration(

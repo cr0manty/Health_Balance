@@ -68,9 +68,9 @@ class ActivityItemScreen extends StatelessWidget {
                           ),
                           child: Text(
                             activity.mainValue(),
-                            style: const TextStyle(
-                              color: Color(0xff68ca44),
-                              fontSize: 64,
+                            style: TextStyle(
+                              color: const Color(0xff68ca44),
+                              fontSize: MediaQuery.of(context).size.width / 8,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
