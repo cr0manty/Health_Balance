@@ -1,4 +1,4 @@
-import 'package:health_balance/src/models/user_data.dart';
+import 'package:health_balance/src/models/user/user_data.dart';
 import 'package:hive/hive.dart';
 
 part 'user.g.dart';
@@ -46,4 +46,6 @@ class User extends HiveObject {
   }
 
   bool get hasData => userData?.isNotEmpty ?? false;
+
+  String get iconName => gender == Gender.female ? 'ic_female' : 'ic_male';
 }

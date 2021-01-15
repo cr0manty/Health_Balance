@@ -4,7 +4,7 @@ import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/formz/user/birth_date.dart';
 import 'package:health_balance/src/formz/user/full_name.dart';
 import 'package:health_balance/src/formz/user/gender.dart';
-import 'package:health_balance/src/models/user.dart';
+import 'package:health_balance/src/models/user/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 

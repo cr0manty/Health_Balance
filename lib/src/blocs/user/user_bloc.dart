@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:health_balance/src/models/user.dart';
-import 'package:health_balance/src/models/user_data.dart';
+import 'package:health_balance/src/models/user/user.dart';
+import 'package:health_balance/src/models/user/user_data.dart';
 import 'package:health_balance/src/repositories/user_repository.dart';
 
 part 'user_bloc.freezed.dart';
@@ -32,6 +32,8 @@ abstract class UserState with _$UserState {
   const factory UserState.exist(User user) = ExistUserState;
 
   const factory UserState.existFull(User user) = ExistFullUserState;
+
+  User get user => throw 'No user';
 }
 
 class UserBLoC extends Bloc<UserEvent, UserState> {

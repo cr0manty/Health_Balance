@@ -6,7 +6,7 @@ import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/screens/user_data/widgets/gender.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/blocs/user_data/user_data_bloc.dart';
-import 'package:health_balance/src/models/user.dart';
+import 'package:health_balance/src/models/user/user.dart';
 import 'package:health_balance/utils/constants.dart';
 import 'package:health_balance/widgets/inputs/date_picker.dart';
 import 'package:health_balance/widgets/inputs/text_input.dart';

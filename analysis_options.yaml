@@ -71,7 +71,7 @@ linter:
     null_closures: true
     omit_local_variable_types: false
     one_member_abstracts: true
-    only_throw_errors: true
+    only_throw_errors: false
     overridden_fields: true
     package_api_docs: true
     parameter_assignments: true

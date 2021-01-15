@@ -6,7 +6,7 @@ import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/formz/user_data/height.dart';
 import 'package:health_balance/src/formz/user_data/weight.dart';
 import 'package:health_balance/src/formz/user_data/wrist_girth.dart';
-import 'package:health_balance/src/models/user_data.dart';
+import 'package:health_balance/src/models/user/user_data.dart';
 
 part 'user_addition_data_bloc.freezed.dart';
 

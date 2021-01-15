@@ -1,5 +1,5 @@
 import 'package:formz/formz.dart';
-import 'package:health_balance/src/models/user.dart';
+import 'package:health_balance/src/models/user/user.dart';
 
 enum GenderStateValidationError { unknown }
 

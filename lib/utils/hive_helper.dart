@@ -1,5 +1,5 @@
-import 'package:health_balance/src/models/user.dart';
-import 'package:health_balance/src/models/user_data.dart';
+import 'package:health_balance/src/models/user/user.dart';
+import 'package:health_balance/src/models/user/user_data.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
