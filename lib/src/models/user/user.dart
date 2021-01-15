@@ -48,4 +48,6 @@ class User extends HiveObject {
   bool get hasData => userData?.isNotEmpty ?? false;
 
   String get iconName => gender == Gender.female ? 'ic_female' : 'ic_male';
+
+  int get age => 0;
 }

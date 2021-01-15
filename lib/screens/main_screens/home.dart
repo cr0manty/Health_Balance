@@ -35,10 +35,10 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               NavigationManager.instance.pushNamed(
                 '/activity',
-                arguments: Activity(
+                arguments: const Activity(
                   helpText: 'Ваш идеальный индекс\n массы тела',
-                  mainValue: () => '78',
-                  color: const Color(0xFFE0E8F1),
+                  data: ActivityValue.idealWeight,
+                  color: Color(0xFFE0E8F1),
                   imageName: 'ic_weight',
                   unit: 'кг',
                 ),
@@ -52,10 +52,10 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               NavigationManager.instance.pushNamed(
                 '/activity',
-                arguments: Activity(
+                arguments: const Activity(
                   helpText: 'Ваш идеальный индекс\n массы тела',
-                  mainValue: () => '50-55',
-                  color: const Color(0xFFE0E8F1),
+                  data: ActivityValue.bodyIndex,
+                  color: Color(0xFFE0E8F1),
                   imageName: 'ic_weight',
                 ),
               );
@@ -68,10 +68,10 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               NavigationManager.instance.pushNamed(
                 '/activity',
-                arguments: Activity(
+                arguments: const Activity(
                   helpText: 'Количество требуемых\nкалорий в день',
-                  mainValue: () => '1050',
-                  color: const Color(0xFFE2F1E0),
+                  data: ActivityValue.calories,
+                  color: Color(0xFFE2F1E0),
                   imageName: 'ic_calories',
                 ),
               );
@@ -84,10 +84,10 @@ class HomeScreen extends StatelessWidget {
             onTap: () {
               NavigationManager.instance.pushNamed(
                 '/activity',
-                arguments: Activity(
+                arguments: const Activity(
                   helpText: 'Количество выпитой воды в день',
-                  mainValue: () => '2',
-                  color: const Color(0xFFF1E0E0),
+                  data: ActivityValue.water,
+                  color: Color(0xFFF1E0E0),
                   imageName: 'ic_water',
                   unit: 'л',
                 ),

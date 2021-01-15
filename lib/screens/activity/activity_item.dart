@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
+import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/models/activity/activity.dart';
 import 'package:health_balance/utils/constants.dart';
 import 'package:health_balance/widgets/app_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @immutable
 class ActivityItemScreen extends StatelessWidget {
@@ -23,7 +25,6 @@ class ActivityItemScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(40),
         child: Container(
-          height: MediaQuery.of(context).size.height - 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
             color: activity.color,
@@ -38,6 +39,7 @@ class ActivityItemScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              const SizedBox(height: 20),
               Center(
                 child: Text(
                   activity.helpText,
@@ -49,44 +51,48 @@ class ActivityItemScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  FittedBox(
-                    child: Card(
-                      shape: RoundedRectangleBorder(
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Stack(
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 40.0,
-                          vertical: 8,
-                        ),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxHeight: 300,
-                            maxWidth: MediaQuery.of(context).size.width - 210,
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x19000000),
+                            offset: Offset(0, 1),
+                            blurRadius: 5,
                           ),
-                          child: Text(
-                            activity.mainValue(),
-                            style: TextStyle(
-                              color: const Color(0xff68ca44),
-                              fontSize: MediaQuery.of(context).size.width / 8,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
+                        ],
                       ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30.0,
+                        vertical: 8,
+                      ),
+                      child: BlocBuilder<UserBLoC, UserState>(
+                          builder: (context, state) {
+                        return Text(
+                          activity.data.value(state.user),
+                          maxLines: 2,
+                          style: TextStyle(
+                            color: const Color(0xff68ca44),
+                            fontSize: MediaQuery.of(context).size.width / 8,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        );
+                      }),
                     ),
-                  ),
-                  if (activity.unit != null)
-                    Positioned(
-                      bottom: 5,
-                      right: 0,
-                      child: Container(
-                        transform: Matrix4.translationValues(25, 0, 0),
+                    if (activity.unit != null)
+                      Positioned(
+                        bottom: 5,
+                        right: -20,
                         child: Text(
                           activity.unit,
+                          textAlign: TextAlign.left,
                           style: const TextStyle(
                             color: Color(0xff334c71),
                             fontSize: 18,
@@ -94,12 +100,12 @@ class ActivityItemScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
               Image.asset(
                 'assets/images/${activity.imageName}.png',
-                height: MediaQuery.of(context).size.width / 2,
+                height: MediaQuery.of(context).size.height / 3.2,
                 width: MediaQuery.of(context).size.width / 2,
               )
             ],

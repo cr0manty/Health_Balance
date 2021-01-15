@@ -30,4 +30,5 @@ class UserData extends HiveObject {
   }
 
   bool get isNotEmpty => weight != null && height != null && wristGirth != null;
+
 }
