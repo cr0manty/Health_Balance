@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/router/router.dart';
@@ -59,11 +60,18 @@ class _HealthBalanceAppState extends State<HealthBalanceApp> {
       child: MaterialApp(
         navigatorKey: NavigationManager.instance.navigatorKey,
         debugShowCheckedModeBanner: false,
+        builder: (context, child) {
+          return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle.dark,
+            child: child,
+          );
+        },
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           backgroundColor: AppColors.background,
           fontFamily: 'SF Pro Display',
+          brightness: Brightness.light,
         ),
         onGenerateRoute: _appRouter.onGenerateRoute,
       ),

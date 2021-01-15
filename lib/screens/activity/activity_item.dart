@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:health_balance/src/models/activity/activity.dart';
+import 'package:health_balance/utils/constants.dart';
 import 'package:health_balance/widgets/app_bar.dart';
 
 @immutable
@@ -17,6 +18,7 @@ class ActivityItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: const UserAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(40),
@@ -39,17 +41,16 @@ class ActivityItemScreen extends StatelessWidget {
               Center(
                 child: Text(
                   activity.helpText,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color(0xff334c71),
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              Stack(
+                alignment: Alignment.center,
                 children: [
                   FittedBox(
                     child: Card(
@@ -79,14 +80,18 @@ class ActivityItemScreen extends StatelessWidget {
                     ),
                   ),
                   if (activity.unit != null)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 13, left: 13),
-                      child: Text(
-                        activity.unit,
-                        style: const TextStyle(
-                          color: Color(0xff334c71),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
+                    Positioned(
+                      bottom: 5,
+                      right: 0,
+                      child: Container(
+                        transform: Matrix4.translationValues(25, 0, 0),
+                        child: Text(
+                          activity.unit,
+                          style: const TextStyle(
+                            color: Color(0xff334c71),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),

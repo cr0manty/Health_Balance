@@ -40,7 +40,7 @@ class NavigationManager {
     );
   }
 
-  Future<dynamic> pushReplacement(String route) {
+  Future<dynamic> pushReplacementNamed(String route) {
     return _navigatorKey.currentState.pushReplacementNamed(route);
   }
 

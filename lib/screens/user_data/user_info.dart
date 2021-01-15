@@ -55,7 +55,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       body: BlocListener<UserBLoC, UserState>(
         listener: (context, state) {
           if (state is ExistUserState) {
-            NavigationManager.instance.pushReplacement('/user_additional_info');
+            NavigationManager.instance
+                .pushReplacementNamed('/user_additional_info');
           }
         },
         child: GestureDetector(

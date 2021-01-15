@@ -54,6 +54,8 @@ class ActivityCard extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   label,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Color(0xFF334C71),
                     fontSize: 18,
