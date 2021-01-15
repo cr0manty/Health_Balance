@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 
 class UserRepository {
   const UserRepository();
-  static const _boxName = 'user_repo2';
+  static const _boxName = 'user_repo';
 
   Future<User> getUser() async {
     final Box box = await Hive.openBox(_boxName);
