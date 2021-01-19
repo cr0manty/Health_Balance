@@ -14,104 +14,185 @@ class ActivityItemScreen extends StatelessWidget {
   const ActivityItemScreen({
     @required this.activity,
     Key key,
-  })  : assert(activity != null, 'Field activity must not be null'),
+  })
+      : assert(activity != null, 'Field activity must not be null'),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: const UserAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(40),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(7),
-            color: activity.color,
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x19000000),
-                offset: Offset(0, 1),
-                blurRadius: 5,
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const SizedBox(height: 20),
-              Center(
-                child: Text(
-                  activity.helpText,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color(0xff334c71),
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+        backgroundColor: AppColors.background,
+        appBar: const UserAppBar(),
+        body: Padding(
+          padding: const EdgeInsets.all(40),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7),
+              color: activity.color,
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x19000000),
+                  offset: Offset(0, 1),
+                  blurRadius: 5,
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const SizedBox(height: 20),
+                Center(
+                  child: Text(
+                    activity.helpText,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color(0xff334c71),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Stack(
-                  alignment: Alignment.center,
-                  clipBehavior: Clip.none,
+                Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Stack(
+                      alignment: Alignment.center,
+                      clipBehavior: Clip.none,
+                      children: [
+                  Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7.0),
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x19000000),
-                            offset: Offset(0, 1),
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0,
-                        vertical: 8,
-                      ),
-                      child: BlocBuilder<UserBLoC, UserState>(
-                          builder: (context, state) {
-                        return Text(
-                          activity.data.value(state.user),
-                          maxLines: 2,
-                          style: TextStyle(
-                            color: const Color(0xff68ca44),
-                            fontSize: MediaQuery.of(context).size.width / 8,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        );
-                      }),
+                  Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7.0),
+                  color: Colors.white,
+                  boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x19000000),
+                    offset: Offset(0, 1),
+                    blurRadius: 5,
+                  ),
+                )
+              ],
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 30.0,
+              vertical: 8,
+            ),
+            child: BlocBuilder<UserBLoC, UserState>(
+                builder: (context, state) {
+                  if (activity.data.mainText != null) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Text(
+                        activity.data.addition.text,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          color: Color(0xff334c71),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),),
+                    );
+                  }
+                  return Text(
+                    activity.data.value(state.user),
+                    maxLines: 2,
+                    style: TextStyle(
+                      color: const Color(0xff68ca44),
+                      fontSize: MediaQuery
+                          .of(context)
+                          .size
+                          .width / 8,
+                      fontWeight: FontWeight.w600,
                     ),
-                    if (activity.unit != null)
-                      Positioned(
-                        bottom: 5,
-                        right: -20,
-                        child: Text(
-                          activity.unit,
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            color: Color(0xff334c71),
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              Image.asset(
-                'assets/images/${activity.imageName}.png',
-                height: MediaQuery.of(context).size.height / 3.2,
-                width: MediaQuery.of(context).size.width / 2,
-              )
-            ],
+                  );
+                }),
           ),
+          ],
+        ),
+        if (activity.unit != null)
+    Positioned(
+      bottom: 5,
+      right: -30,
+      child: Text(
+        activity.unit,
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+          color: Color(0xff334c71),
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
         ),
       ),
+    )
+    ,
+    ],
+    ),
+    ),
+    if (activity.data.addition != null)
+    Center(
+    child: Builder(
+    builder: (context) {
+    if (activity.data.addition.useCard) {
+    return Row(
+    children: [
+    Container(
+    decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(7.0),
+    color: Colors.white,
+    boxShadow: const [
+    BoxShadow(
+    color: Color(0x19000000),
+    offset: Offset(0, 1),
+    blurRadius: 5,
+    ),
+    ],
+    ),
+    padding: const EdgeInsets.symmetric(
+    horizontal: 30.0,
+    vertical: 8,
+    ),
+    child: Text(
+    activity.data.addition.value,
+    maxLines: 2,
+    style: TextStyle(
+    color: const Color(0xff68ca44),
+    fontSize:
+    MediaQuery.of(context).size.width / 8,
+    fontWeight: FontWeight.w600,
+    ),
+    ),
+    ),
+    const SizedBox(width: 20),
+    Text(
+    activity.data.addition.text,
+    textAlign: TextAlign.left,
+    style: const TextStyle(
+    color: Color(0xff334c71),
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    ),
+    )
+    ],
+    );
+    }
+    return Text(
+    activity.data.addition.text,
+    style: const TextStyle(
+    color: Color(0xff334c71),
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    ),
+    );
+    },
+    ),
+    ),
+    Image.asset(
+    'assets/images/${activity.imageName}.png',
+    height: MediaQuery.of(context).size.height / 3.2,
+    width: MediaQuery.of(context).size.width / 2,
+    )
+    ],
+    ),
+    ),
+    ),
     );
   }
 

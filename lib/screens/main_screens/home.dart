@@ -29,6 +29,22 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
         children: [
           ActivityCard(
+            label: 'ИМТ',
+            color: const Color(0xFFE0E8F1),
+            imageName: 'scale',
+            onTap: () {
+              NavigationManager.instance.pushNamed(
+                '/activity',
+                arguments: const Activity(
+                  helpText: 'Ваш  индекс массы тела',
+                  data: ActivityValue.imb,
+                  color: Color(0xFFE0E8F1),
+                  imageName: 'ic_weight',
+                ),
+              );
+            },
+          ),
+          ActivityCard(
             label: 'Вес',
             color: const Color(0xFFE0E8F1),
             imageName: 'scale',
@@ -53,8 +69,8 @@ class HomeScreen extends StatelessWidget {
               NavigationManager.instance.pushNamed(
                 '/activity',
                 arguments: const Activity(
-                  helpText: 'Ваш идеальный индекс\n массы тела',
-                  data: ActivityValue.bodyIndex,
+                  helpText: 'Ваше идеальное артериальное\nдавление',
+                  data: ActivityValue.bloodPressure,
                   color: Color(0xFFE0E8F1),
                   imageName: 'ic_weight',
                 ),
