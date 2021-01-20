@@ -39,7 +39,7 @@ enum ActivityValue {
   bodyIndex,
   bloodPressure,
   idealWeight,
-  imb,
+  bmi,
   water,
   calories,
 }
@@ -54,32 +54,39 @@ extension ActivityValueExtension on ActivityValue {
       case ActivityValue.bodyIndex:
         return _bodyIndex();
       case ActivityValue.idealWeight:
-        return _idealWeight();
+        return _idealWeight(user.gender, user.userData.height);
       case ActivityValue.water:
         return _water(user.userData.weight, user.gender);
       case ActivityValue.calories:
-        return _calories();
-      case ActivityValue.imb:
-        return _imb();
+        return _calories(
+          user.gender,
+          user.userData.weight,
+          user.userData.height,
+          user.age,
+        );
+      case ActivityValue.bmi:
+        return _bmi();
     }
     return '-';
   }
 
   String get mainText {
-     if (this == ActivityValue.bloodPressure) {
-       return 'Систола';
-     }
-     return null;
+    if (this == ActivityValue.bloodPressure) {
+      return 'Систола';
+    }
+    return null;
   }
 
-  AdditionData get addition {
-    if (this == ActivityValue.imb) {
+  AdditionData addition(User user) {
+    assert(user?.userData != null, 'User or User Data can not be null');
+
+    if (this == ActivityValue.bmi) {
       return AdditionData('Нормальная масса тела');
     } else if (this == ActivityValue.bloodPressure) {
       return AdditionData(
         'Диастола',
         useCard: true,
-        value: _bloodPressureAddition(),
+        value: _bloodPressureAddition(user.age, user.userData.weight),
       );
     }
     return null;
@@ -89,11 +96,15 @@ extension ActivityValueExtension on ActivityValue {
     return '-';
   }
 
-  String _bloodPressureAddition() {
-    return '-';
+  String _bloodPressureAddition(int age, double weight) {
+    if (age < 17) {
+      return (1.6 * age + 42).toStringAsFixed(2);
+    } else {
+      return (63 + 0.1 * age + 0.15 * weight).toStringAsFixed(2);
+    }
   }
 
-  String _imb() {
+  String _bmi() {
     return '-';
   }
 
@@ -108,22 +119,32 @@ extension ActivityValueExtension on ActivityValue {
     return data?.toStringAsFixed(2) ?? '-';
   }
 
-  String _idealWeight() {
+  String _idealWeight(Gender gender, double height) {
+    if (gender == Gender.male) {
+      return (0.713 * height - 58.0).toStringAsFixed(2);
+    } else if (gender == Gender.female) {
+      return (0.624 * height - 48.9).toStringAsFixed(2);
+    }
     return '-';
   }
 
   String _water(double weight, Gender gender) {
-    double data;
-
     if (gender == Gender.male) {
-      data = weight * 35;
-    } else {
-      data = weight * 31;
+      return (weight * 35 / 1000).toStringAsFixed(2);
+    } else if (gender == Gender.female) {
+      return (weight * 31 / 1000).toStringAsFixed(2);
     }
-    return data?.toStringAsFixed(2) ?? '-';
+    return '-';
   }
 
-  String _calories() {
+  String _calories(Gender gender, double weight, double height, int age) {
+    if (gender == Gender.male) {
+      return (88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age))
+          .toStringAsFixed(2);
+    } else if (gender == Gender.female) {
+      return (447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age))
+          .toStringAsFixed(2);
+    }
     return '-';
   }
 }

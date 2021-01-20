@@ -31,15 +31,15 @@ class HomeScreen extends StatelessWidget {
           ActivityCard(
             label: 'ИМТ',
             color: const Color(0xFFE0E8F1),
-            imageName: 'scale',
+            imageName: 'apple',
             onTap: () {
               NavigationManager.instance.pushNamed(
                 '/activity',
                 arguments: const Activity(
                   helpText: 'Ваш  индекс массы тела',
-                  data: ActivityValue.imb,
+                  data: ActivityValue.bmi,
                   color: Color(0xFFE0E8F1),
-                  imageName: 'ic_weight',
+                  imageName: 'ic_bmi',
                 ),
               );
             },

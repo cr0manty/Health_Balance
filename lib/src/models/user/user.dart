@@ -49,5 +49,5 @@ class User extends HiveObject {
 
   String get iconName => gender == Gender.female ? 'ic_female' : 'ic_male';
 
-  int get age => 0;
+  int get age => 10;
 }
