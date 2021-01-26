@@ -36,7 +36,6 @@ class Activity {
 }
 
 enum ActivityValue {
-  bodyIndex,
   bloodPressure,
   idealWeight,
   bmi,
@@ -51,8 +50,6 @@ extension ActivityValueExtension on ActivityValue {
     switch (this) {
       case ActivityValue.bloodPressure:
         return _bloodPressure(user.userData.weight, user.age);
-      case ActivityValue.bodyIndex:
-        return _bodyIndex();
       case ActivityValue.idealWeight:
         return _idealWeight(user.gender, user.userData.height);
       case ActivityValue.water:
@@ -65,7 +62,10 @@ extension ActivityValueExtension on ActivityValue {
           user.age,
         );
       case ActivityValue.bmi:
-        return _bmi();
+        return _bmi(
+          user.userData.weight,
+          user.userData.height,
+        );
     }
     return '-';
   }
@@ -81,7 +81,9 @@ extension ActivityValueExtension on ActivityValue {
     assert(user?.userData != null, 'User or User Data can not be null');
 
     if (this == ActivityValue.bmi) {
-      return AdditionData('Нормальная масса тела');
+      final double bmi = _bmiValue(user.userData.weight, user.userData.height);
+
+      return _bmiStatus(bmi);
     } else if (this == ActivityValue.bloodPressure) {
       return AdditionData(
         'Диастола',
@@ -92,8 +94,23 @@ extension ActivityValueExtension on ActivityValue {
     return null;
   }
 
-  String _bodyIndex() {
-    return '-';
+  AdditionData _bmiStatus(double bmi) {
+    if (bmi <= 16.0) {
+      return AdditionData('Выраженный дефицит массы тела');
+    } else if (bmi > 16 && bmi <= 18.5) {
+      return AdditionData('Недостаточная масса тела\n(дефицит)');
+    } else if (bmi > 18.5 && bmi <= 24) {
+      return AdditionData('Нормальная масса тела');
+    } else if (bmi > 25 && bmi <= 30) {
+      return AdditionData('Избыточная масса тела\n(предожирение)');
+    } else if (bmi > 30 && bmi <= 35) {
+      return AdditionData('Ожирение I степени');
+    } else if (bmi > 35 && bmi <= 40) {
+      return AdditionData('Ожирение II степени');
+    } else if (bmi > 40) {
+      return AdditionData('Ожирение III степени');
+    }
+    return AdditionData('');
   }
 
   String _bloodPressureAddition(int age, double weight) {
@@ -104,8 +121,13 @@ extension ActivityValueExtension on ActivityValue {
     }
   }
 
-  String _bmi() {
-    return '-';
+  double _bmiValue(double weight, double height) {
+    final double heightM = height * 0.01;
+    return weight / (heightM * heightM);
+  }
+
+  String _bmi(double weight, double height) {
+    return _bmiValue(weight, height).toInt().toString();
   }
 
   String _bloodPressure(double weight, int age) {

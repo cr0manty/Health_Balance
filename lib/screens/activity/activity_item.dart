@@ -188,6 +188,7 @@ class ActivityItemScreen extends StatelessWidget {
                             }
                             return Text(
                               activity.data.addition(state.user).text,
+                              textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Color(0xff334c71),
                                 fontSize: 18,
