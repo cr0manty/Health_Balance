@@ -6,6 +6,8 @@ import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/screens/user_data/widgets/gender.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/blocs/user_data/user_data_bloc.dart';
+import 'package:health_balance/src/formz/user/birth_date.dart';
+import 'package:health_balance/src/formz/user/full_name.dart';
 import 'package:health_balance/src/models/user/user.dart';
 import 'package:health_balance/utils/constants.dart';
 import 'package:health_balance/widgets/inputs/date_picker.dart';
@@ -101,6 +103,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               TextInput(
                 controller: _nameController,
                 focus: _nameFocus,
+                validator: const FullName.pure(),
+                helpText: 'Ваш имя должнно содержать  '
+                    'от ${FullName.minLength} '
+                    'до ${FullName.maxLength} символов',
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
                 onChanged: (value) {
@@ -136,10 +142,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         child: DatePicker(
                           onDateTimeChanged: (date) {
                             _currentTime = date;
-                            _birthDateController.text =
+                            final String formattedDate =
                                 DateFormat('d MMMM y').format(date);
+                            _birthDateController.text = formattedDate;
                             _userDataBLoC.add(
-                              UserDataEvent.birthDateChanged(date),
+                              UserDataEvent.birthDateChanged(formattedDate),
                             );
                           },
                           currentDate: _currentTime,
@@ -152,6 +159,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   controller: _birthDateController,
                   onEditingComplete: FocusScope.of(context).unfocus,
                   enabled: false,
+                  validator: const BirthDate.pure(),
+                  helpText: 'Ваш возраст долен быть  '
+                      'от ${BirthDate.minYears} '
+                      'до ${BirthDate.maxYears}',
                 ),
               ),
               const Padding(
@@ -179,8 +190,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         children: [
                           GenderButton(
                             icon: 'mars',
-                            color: const Color(0xffe0e7f1),
-                            iconColor: const Color(0xff5392f9),
+                            color: AppColors.inputBackground,
+                            iconColor: AppColors.blueConstant,
                             isSelected: state.gender.value == Gender.male,
                             onTap: () {
                               FocusScope.of(context).unfocus();

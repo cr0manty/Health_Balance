@@ -115,9 +115,9 @@ extension ActivityValueExtension on ActivityValue {
 
   String _bloodPressureAddition(int age, double weight) {
     if (age < 17) {
-      return (1.6 * age + 42).toStringAsFixed(2);
+      return (1.6 * age + 42).round().toString();
     } else {
-      return (63 + 0.1 * age + 0.15 * weight).toStringAsFixed(2);
+      return (63 + 0.1 * age + 0.15 * weight).round().toString();
     }
   }
 
@@ -138,23 +138,23 @@ extension ActivityValueExtension on ActivityValue {
     } else {
       data = 109 + 0.5 * age + 0.1 * weight;
     }
-    return data?.toStringAsFixed(2) ?? '-';
+    return data?.toInt()?.toString() ?? '-';
   }
 
   String _idealWeight(Gender gender, double height) {
     if (gender == Gender.male) {
-      return (0.713 * height - 58.0).toStringAsFixed(2);
+      return (0.713 * height - 58.0).round().toString();
     } else if (gender == Gender.female) {
-      return (0.624 * height - 48.9).toStringAsFixed(2);
+      return (0.624 * height - 48.9).round().toString();
     }
     return '-';
   }
 
   String _water(double weight, Gender gender) {
     if (gender == Gender.male) {
-      return (weight * 35 / 1000).toStringAsFixed(2);
+      return (weight * 35 / 1000).toStringAsFixed(1);
     } else if (gender == Gender.female) {
-      return (weight * 31 / 1000).toStringAsFixed(2);
+      return (weight * 31 / 1000).toStringAsFixed(1);
     }
     return '-';
   }
@@ -162,10 +162,10 @@ extension ActivityValueExtension on ActivityValue {
   String _calories(Gender gender, double weight, double height, int age) {
     if (gender == Gender.male) {
       return (88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age))
-          .toStringAsFixed(2);
+          .round().toString();
     } else if (gender == Gender.female) {
       return (447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age))
-          .toStringAsFixed(2);
+          .round().toString();
     }
     return '-';
   }

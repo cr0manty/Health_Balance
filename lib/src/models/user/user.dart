@@ -1,5 +1,6 @@
 import 'package:health_balance/src/models/user/user_data.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 part 'user.g.dart';
 
@@ -20,7 +21,7 @@ class User extends HiveObject {
   @HiveField(1)
   final Gender gender;
   @HiveField(2)
-  final DateTime birthDate;
+  final String birthDate;
   @HiveField(3)
   final UserData userData;
 
@@ -34,7 +35,7 @@ class User extends HiveObject {
   User copyWith({
     String fullName,
     Gender gender,
-    DateTime birthDate,
+    String birthDate,
     UserData userData,
   }) {
     return User(
@@ -49,5 +50,11 @@ class User extends HiveObject {
 
   String get iconName => gender == Gender.female ? 'ic_female' : 'ic_male';
 
-  int get age => 10;
+  int get age {
+    final DateTime date = DateFormat('d MMMM y').parse(birthDate);
+    final int yearDiff = DateTime.fromMillisecondsSinceEpoch(
+      DateTime.now().difference(date).inMilliseconds,
+    ).year;
+    return yearDiff - 1970;
+  }
 }

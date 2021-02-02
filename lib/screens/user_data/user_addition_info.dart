@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:health_balance/src/blocs/user_addition_data/user_addition_data_bloc.dart';
+import 'package:health_balance/src/formz/user_data/height.dart';
+import 'package:health_balance/src/formz/user_data/weight.dart';
+import 'package:health_balance/src/formz/user_data/wrist_girth.dart';
 import 'package:health_balance/utils/constants.dart';
 import 'package:health_balance/widgets/inputs/text_input.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -131,6 +134,10 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
               TextInput(
                 controller: _weightController,
                 focus: _weightFocus,
+                validator: const Weight.pure(),
+                helpText: 'Ваш вес может быть '
+                    'от ${Weight.minWeight} '
+                    'до ${Weight.maxWeight}',
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_wristGirthFocus),
                 textInputAction: TextInputAction.next,
@@ -140,15 +147,15 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
                     UserAdditionDataEvent.weightChanged(value),
                   );
                 },
-                suffix: const IgnorePointer(
+                suffix: IgnorePointer(
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.only(right: 16.0),
                       child: Text(
                         'Кг',
                         style: TextStyle(
-                          color: Color(0xff5392f9),
+                          color: AppColors.blueConstant,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
@@ -174,6 +181,10 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
               TextInput(
                 controller: _heightController,
                 focus: _heightFocus,
+                validator: const Height.pure(),
+                helpText: 'Ваш рост может быть '
+                    'от ${Height.minHeight} '
+                    'до ${Height.maxHeight}',
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_heightFocus),
                 textInputAction: TextInputAction.next,
@@ -183,15 +194,15 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
                     UserAdditionDataEvent.heightChanged(value),
                   );
                 },
-                suffix: const IgnorePointer(
+                suffix: IgnorePointer(
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.only(right: 16.0),
                       child: Text(
                         'См',
                         style: TextStyle(
-                          color: Color(0xff5392f9),
+                          color: AppColors.blueConstant,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
@@ -217,6 +228,10 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
               TextInput(
                 controller: _wristGirthController,
                 focus: _wristGirthFocus,
+                validator: const WristGirth.pure(),
+                helpText: 'Ваш обхват запястья может быть '
+                    'от ${WristGirth.minWristGirth} '
+                    'до ${WristGirth.maxWristGirth}',
                 onEditingComplete: _nextStep,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
@@ -225,15 +240,15 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
                     UserAdditionDataEvent.wristGirthChanged(value),
                   );
                 },
-                suffix: const IgnorePointer(
+                suffix: IgnorePointer(
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.only(right: 16.0),
                       child: Text(
                         'См',
                         style: TextStyle(
-                          color: Color(0xff5392f9),
+                          color: AppColors.blueConstant,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),

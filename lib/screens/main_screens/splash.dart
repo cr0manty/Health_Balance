@@ -36,7 +36,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<UserBLoC>(context).add(const UserEvent.read());
   }
 
   @override

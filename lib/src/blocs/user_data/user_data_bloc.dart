@@ -17,7 +17,7 @@ abstract class UserDataEvent with _$UserDataEvent {
   const factory UserDataEvent.fullNameChanged(String fullName) =
       FullNameChangedUserDataEvent;
 
-  const factory UserDataEvent.birthDateChanged(DateTime date) =
+  const factory UserDataEvent.birthDateChanged(String date) =
       BirthDateChangedUserDataEvent;
 
   const factory UserDataEvent.genderChanged(Gender gender) =
@@ -90,7 +90,7 @@ class UserDataBLoC extends Bloc<UserDataEvent, UserDataState> {
     );
   }
 
-  Stream<UserDataState> _birthDateChanged(DateTime date) async* {
+  Stream<UserDataState> _birthDateChanged(String date) async* {
     final birthDateValidator = BirthDate.dirty(date);
     yield state.copyWith(
       birthDate: birthDateValidator,
@@ -115,11 +115,18 @@ class UserDataBLoC extends Bloc<UserDataEvent, UserDataState> {
   }
 
   Stream<UserDataState> _submit() async* {
-    final User user = User(
-      fullName: state.fullName.value,
-      birthDate: state.birthDate.value,
-      gender: state.gender.value,
-    );
-    _userBLoC.add(UserEvent.create(user));
+    final isValid = Formz.validate([
+      state.fullName,
+      state.birthDate,
+      state.gender,
+    ]);
+    if (isValid == FormzStatus.valid) {
+      final User user = User(
+        fullName: state.fullName.value,
+        birthDate: state.birthDate.value,
+        gender: state.gender.value,
+      );
+      _userBLoC.add(UserEvent.create(user));
+    }
   }
 }

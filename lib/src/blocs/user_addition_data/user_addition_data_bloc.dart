@@ -132,12 +132,19 @@ class UserAdditionDataBLoC
   }
 
   Stream<UserAdditionDataState> _submit() async* {
-    final UserData userData = UserData(
-      wristGirth: state.wristGirth.doubleValue,
-      height: state.height.doubleValue,
-      weight: state.weight.doubleValue,
-    );
+    final isValid = Formz.validate([
+      state.height,
+      state.weight,
+      state.wristGirth,
+    ]);
+    if (isValid == FormzStatus.valid) {
+      final UserData userData = UserData(
+        wristGirth: state.wristGirth.doubleValue,
+        height: state.height.doubleValue,
+        weight: state.weight.doubleValue,
+      );
 
-    _userBLoC.add(UserEvent.update(userData));
+      _userBLoC.add(UserEvent.update(userData));
+    }
   }
 }

@@ -21,7 +21,7 @@ class _$UserDataEventTearOff {
   }
 
 // ignore: unused_element
-  BirthDateChangedUserDataEvent birthDateChanged(DateTime date) {
+  BirthDateChangedUserDataEvent birthDateChanged(String date) {
     return BirthDateChangedUserDataEvent(
       date,
     );
@@ -49,14 +49,14 @@ mixin _$UserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult fullNameChanged(String fullName),
-    @required TResult birthDateChanged(DateTime date),
+    @required TResult birthDateChanged(String date),
     @required TResult genderChanged(Gender gender),
     @required TResult submit(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult fullNameChanged(String fullName),
-    TResult birthDateChanged(DateTime date),
+    TResult birthDateChanged(String date),
     TResult genderChanged(Gender gender),
     TResult submit(),
     @required TResult orElse(),
@@ -164,7 +164,7 @@ class _$FullNameChangedUserDataEvent extends FullNameChangedUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult fullNameChanged(String fullName),
-    @required TResult birthDateChanged(DateTime date),
+    @required TResult birthDateChanged(String date),
     @required TResult genderChanged(Gender gender),
     @required TResult submit(),
   }) {
@@ -179,7 +179,7 @@ class _$FullNameChangedUserDataEvent extends FullNameChangedUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult fullNameChanged(String fullName),
-    TResult birthDateChanged(DateTime date),
+    TResult birthDateChanged(String date),
     TResult genderChanged(Gender gender),
     TResult submit(),
     @required TResult orElse(),
@@ -240,7 +240,7 @@ abstract class $BirthDateChangedUserDataEventCopyWith<$Res> {
           BirthDateChangedUserDataEvent value,
           $Res Function(BirthDateChangedUserDataEvent) then) =
       _$BirthDateChangedUserDataEventCopyWithImpl<$Res>;
-  $Res call({DateTime date});
+  $Res call({String date});
 }
 
 /// @nodoc
@@ -261,7 +261,7 @@ class _$BirthDateChangedUserDataEventCopyWithImpl<$Res>
     Object date = freezed,
   }) {
     return _then(BirthDateChangedUserDataEvent(
-      date == freezed ? _value.date : date as DateTime,
+      date == freezed ? _value.date : date as String,
     ));
   }
 }
@@ -273,7 +273,7 @@ class _$BirthDateChangedUserDataEvent extends BirthDateChangedUserDataEvent {
         super._();
 
   @override
-  final DateTime date;
+  final String date;
 
   @override
   String toString() {
@@ -302,7 +302,7 @@ class _$BirthDateChangedUserDataEvent extends BirthDateChangedUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult fullNameChanged(String fullName),
-    @required TResult birthDateChanged(DateTime date),
+    @required TResult birthDateChanged(String date),
     @required TResult genderChanged(Gender gender),
     @required TResult submit(),
   }) {
@@ -317,7 +317,7 @@ class _$BirthDateChangedUserDataEvent extends BirthDateChangedUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult fullNameChanged(String fullName),
-    TResult birthDateChanged(DateTime date),
+    TResult birthDateChanged(String date),
     TResult genderChanged(Gender gender),
     TResult submit(),
     @required TResult orElse(),
@@ -363,10 +363,10 @@ class _$BirthDateChangedUserDataEvent extends BirthDateChangedUserDataEvent {
 
 abstract class BirthDateChangedUserDataEvent extends UserDataEvent {
   const BirthDateChangedUserDataEvent._() : super._();
-  const factory BirthDateChangedUserDataEvent(DateTime date) =
+  const factory BirthDateChangedUserDataEvent(String date) =
       _$BirthDateChangedUserDataEvent;
 
-  DateTime get date;
+  String get date;
   @JsonKey(ignore: true)
   $BirthDateChangedUserDataEventCopyWith<BirthDateChangedUserDataEvent>
       get copyWith;
@@ -439,7 +439,7 @@ class _$GenderChangedUserDataEvent extends GenderChangedUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult fullNameChanged(String fullName),
-    @required TResult birthDateChanged(DateTime date),
+    @required TResult birthDateChanged(String date),
     @required TResult genderChanged(Gender gender),
     @required TResult submit(),
   }) {
@@ -454,7 +454,7 @@ class _$GenderChangedUserDataEvent extends GenderChangedUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult fullNameChanged(String fullName),
-    TResult birthDateChanged(DateTime date),
+    TResult birthDateChanged(String date),
     TResult genderChanged(Gender gender),
     TResult submit(),
     @required TResult orElse(),
@@ -548,7 +548,7 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult fullNameChanged(String fullName),
-    @required TResult birthDateChanged(DateTime date),
+    @required TResult birthDateChanged(String date),
     @required TResult genderChanged(Gender gender),
     @required TResult submit(),
   }) {
@@ -563,7 +563,7 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult fullNameChanged(String fullName),
-    TResult birthDateChanged(DateTime date),
+    TResult birthDateChanged(String date),
     TResult genderChanged(Gender gender),
     TResult submit(),
     @required TResult orElse(),

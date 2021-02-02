@@ -3,8 +3,9 @@ import 'package:formz/formz.dart';
 enum WeightValidationError { empty, isNotDigit, small, large }
 
 class Weight extends FormzInput<String, WeightValidationError> {
-  static const _minWeight = 35;
-  static const _maxWeight = 114;
+
+  static const minWeight = 35;
+  static const maxWeight = 114;
 
   const Weight.pure() : super.pure('');
 
@@ -14,17 +15,17 @@ class Weight extends FormzInput<String, WeightValidationError> {
   WeightValidationError validator(String value) {
     if (value?.isEmpty ?? true) {
       return WeightValidationError.empty;
-    } else if (_isNotDigit) {
+    } else if (_isNotDigit(value)) {
       return WeightValidationError.isNotDigit;
-    } else if (double.parse(value) < _minWeight) {
-      return WeightValidationError.isNotDigit;
-    } else if (double.parse(value) > _maxWeight) {
+    } else if (double.parse(value) < minWeight) {
+      return WeightValidationError.small;
+    } else if (double.parse(value) > maxWeight) {
       return WeightValidationError.large;
     }
     return null;
   }
 
-  bool get _isNotDigit {
+  bool _isNotDigit(String value) {
     return double.parse(value, (e) => null) == null;
   }
 

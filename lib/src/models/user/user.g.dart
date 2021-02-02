@@ -63,7 +63,7 @@ class UserAdapter extends TypeAdapter<User> {
     return User(
       gender: fields[1] as Gender,
       fullName: fields[0] as String,
-      birthDate: fields[2] as DateTime,
+      birthDate: fields[2] as String,
       userData: fields[3] as UserData,
     );
   }

@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/blocs/user_addition_data/user_addition_data_bloc.dart';
+import 'package:health_balance/src/formz/user_data/height.dart';
+import 'package:health_balance/src/formz/user_data/weight.dart';
+import 'package:health_balance/src/formz/user_data/wrist_girth.dart';
 import 'package:health_balance/utils/constants.dart';
 import 'package:health_balance/widgets/inputs/text_input.dart';
 
@@ -65,7 +68,10 @@ class _UserProfileState extends State<UserProfile> {
   void initState() {
     super.initState();
     _userAdditionDataBLoC = BlocProvider.of<UserAdditionDataBLoC>(context);
-    final user = BlocProvider.of<UserBLoC>(context).state.user;
+    final user = BlocProvider
+        .of<UserBLoC>(context)
+        .state
+        .user;
     _userAdditionDataBLoC.add(
       UserAdditionDataEvent.loadData(user.userData),
     );
@@ -101,7 +107,7 @@ class _UserProfileState extends State<UserProfile> {
             },
             child: const Center(
               child: Padding(
-                padding: EdgeInsets.only(right: 36.0, top: 10),
+                padding: EdgeInsets.only(right: 36.0),
                 child: Text(
                   'Выйти',
                   style: TextStyle(
@@ -118,7 +124,7 @@ class _UserProfileState extends State<UserProfile> {
       backgroundColor: AppColors.background,
       body: BlocListener<UserBLoC, UserState>(
         listenWhen: (previous, current) =>
-            NavigationManager.instance.route != '/',
+        NavigationManager.instance.route != '/',
         listener: (context, state) {
           if (state is ExistFullUserState) {
             NavigationManager.instance.pushNamedAndRemoveUntil('/');
@@ -126,7 +132,9 @@ class _UserProfileState extends State<UserProfile> {
         },
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: FocusScope.of(context).unfocus,
+          onTap: FocusScope
+              .of(context)
+              .unfocus,
           child: ListView(
             physics: const ClampingScrollPhysics(),
             children: [
@@ -160,6 +168,10 @@ class _UserProfileState extends State<UserProfile> {
               TextInput(
                 controller: _weightController,
                 focus: _weightFocus,
+                validator: const Weight.pure(),
+                helpText: 'Ваш вес может быть '
+                    'от ${Weight.minWeight} '
+                    'до ${Weight.maxWeight}',
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_wristGirthFocus),
                 textInputAction: TextInputAction.next,
@@ -169,15 +181,15 @@ class _UserProfileState extends State<UserProfile> {
                     UserAdditionDataEvent.weightChanged(value),
                   );
                 },
-                suffix: const IgnorePointer(
+                suffix: IgnorePointer(
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.only(right: 16.0),
                       child: Text(
                         'Кг',
                         style: TextStyle(
-                          color: Color(0xff5392f9),
+                          color: AppColors.blueConstant,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
@@ -203,6 +215,10 @@ class _UserProfileState extends State<UserProfile> {
               TextInput(
                 controller: _heightController,
                 focus: _heightFocus,
+                validator: const Height.pure(),
+                helpText: 'Ваш рост может быть '
+                    'от ${Height.minHeight} '
+                    'до ${Height.maxHeight}',
                 onEditingComplete: () =>
                     FocusScope.of(context).requestFocus(_heightFocus),
                 textInputAction: TextInputAction.next,
@@ -212,15 +228,15 @@ class _UserProfileState extends State<UserProfile> {
                     UserAdditionDataEvent.heightChanged(value),
                   );
                 },
-                suffix: const IgnorePointer(
+                suffix: IgnorePointer(
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.only(right: 16.0),
                       child: Text(
                         'См',
                         style: TextStyle(
-                          color: Color(0xff5392f9),
+                          color: AppColors.blueConstant,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
@@ -246,6 +262,10 @@ class _UserProfileState extends State<UserProfile> {
               TextInput(
                 controller: _wristGirthController,
                 focus: _wristGirthFocus,
+                validator: const WristGirth.pure(),
+                helpText: 'Ваш обхват запястья может быть '
+                    'от ${WristGirth.minWristGirth} '
+                    'до ${WristGirth.maxWristGirth}',
                 onEditingComplete: _nextStep,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
@@ -254,15 +274,15 @@ class _UserProfileState extends State<UserProfile> {
                     UserAdditionDataEvent.wristGirthChanged(value),
                   );
                 },
-                suffix: const IgnorePointer(
+                suffix: IgnorePointer(
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.only(right: 16.0),
                       child: Text(
                         'См',
                         style: TextStyle(
-                          color: Color(0xff5392f9),
+                          color: AppColors.blueConstant,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
@@ -276,7 +296,7 @@ class _UserProfileState extends State<UserProfile> {
                 padding: const EdgeInsets.symmetric(horizontal: 57.0),
                 child: BlocBuilder<UserAdditionDataBLoC, UserAdditionDataState>(
                   buildWhen: (previous, current) =>
-                      previous.status != current.status,
+                  previous.status != current.status,
                   builder: (context, state) {
                     return FlatButton(
                       color: const Color(0xffff60b2),

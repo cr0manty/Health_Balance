@@ -3,8 +3,8 @@ import 'package:formz/formz.dart';
 enum FullNameValidationError { empty, small, large }
 
 class FullName extends FormzInput<String, FullNameValidationError> {
-  static const _minLength = 3;
-  static const _maxLength = 12;
+  static const minLength = 3;
+  static const maxLength = 12;
 
   const FullName.pure() : super.pure('');
 
@@ -14,9 +14,9 @@ class FullName extends FormzInput<String, FullNameValidationError> {
   FullNameValidationError validator(String value) {
     if (value?.isEmpty ?? true) {
       return FullNameValidationError.empty;
-    } else if (value.length < _minLength) {
+    } else if (value.length < minLength) {
       return FullNameValidationError.small;
-    } else if (value.length > _maxLength) {
+    } else if (value.length > maxLength) {
       return FullNameValidationError.large;
     }
     return null;

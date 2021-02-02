@@ -79,15 +79,8 @@ class ActivityItemScreen extends StatelessWidget {
                             ),
                             child: BlocBuilder<UserBLoC, UserState>(
                                 builder: (context, state) {
-                              String text;
-                              if (activity.data.mainText != null) {
-                                text = activity.data.addition(state.user).value;
-                              } else {
-                                text = activity.data.value(state.user);
-                              }
-
                               return Text(
-                                text,
+                                activity.data.value(state.user),
                                 maxLines: 2,
                                 style: TextStyle(
                                   color: const Color(0xff68ca44),
@@ -182,7 +175,7 @@ class ActivityItemScreen extends StatelessWidget {
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                     ),
-                                  )
+                                  ),
                                 ],
                               );
                             }
@@ -201,7 +194,7 @@ class ActivityItemScreen extends StatelessWidget {
                     ),
                   ),
                 );
-              }),
+              },),
               FittedBox(
                 child: Image.asset(
                   'assets/images/${activity.imageName}.png',

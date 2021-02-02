@@ -6,6 +6,7 @@ import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/router/router.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/utils/constants.dart';
+import 'package:health_balance/utils/hive_helper.dart';
 
 @immutable
 class HealthBalanceApp extends StatefulWidget {
@@ -39,6 +40,21 @@ class _HealthBalanceAppState extends State<HealthBalanceApp> {
   void dispose() {
     _appRouter?.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    asyncInit();
+  }
+
+  Future<void> asyncInit() async {
+    await SystemChrome.setEnabledSystemUIOverlays([]);
+
+    await HiveHelper.init();
+    _appRouter.userBLoC.add(
+      const UserEvent.read(),
+    );
   }
 
   @override
