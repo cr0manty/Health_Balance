@@ -67,11 +67,12 @@ class _HealthBalanceAppState extends State<HealthBalanceApp> {
           );
         },
         theme: ThemeData(
-          primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           backgroundColor: AppColors.background,
           fontFamily: 'SF Pro Display',
           brightness: Brightness.light,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
         ),
         onGenerateRoute: _appRouter.onGenerateRoute,
       ),

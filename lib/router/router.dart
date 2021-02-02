@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_balance/screens/activity/activity_item.dart';
 import 'package:health_balance/screens/main_screens/home.dart';
 import 'package:health_balance/screens/main_screens/splash.dart';
+import 'package:health_balance/screens/profile/user_profile.dart';
 import 'package:health_balance/screens/user_data/user_addition_info.dart';
 import 'package:health_balance/screens/user_data/user_info.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
@@ -12,11 +13,13 @@ import 'package:health_balance/src/models/activity/activity.dart';
 import 'package:health_balance/src/repositories/user_repository.dart';
 
 class AppRouter {
-  UserBLoC userBLoC;
+  UserBLoC _userBLoC;
 
   AppRouter() {
-    userBLoC = UserBLoC(const UserRepository());
+    _userBLoC = UserBLoC(const UserRepository());
   }
+
+  UserBLoC get userBLoC => _userBLoC;
 
   Route onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -27,15 +30,22 @@ class AppRouter {
       case '/user_info':
         return MaterialPageRoute(
           builder: (_) => BlocProvider<UserDataBLoC>(
-            create: (_) => UserDataBLoC(userBLoC),
+            create: (_) => UserDataBLoC(_userBLoC),
             child: const UserInfoScreen(),
           ),
         );
       case '/user_additional_info':
         return MaterialPageRoute(
           builder: (_) => BlocProvider<UserAdditionDataBLoC>(
-            create: (_) => UserAdditionDataBLoC(userBLoC),
+            create: (_) => UserAdditionDataBLoC(_userBLoC),
             child: const UserAdditionInfoScreen(),
+          ),
+        );
+      case '/profile':
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<UserAdditionDataBLoC>(
+            create: (_) => UserAdditionDataBLoC(_userBLoC),
+            child: const UserProfile(),
           ),
         );
       case '/home':
@@ -57,6 +67,6 @@ class AppRouter {
   }
 
   void dispose() {
-    userBLoC?.close();
+    _userBLoC?.close();
   }
 }

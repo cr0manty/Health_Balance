@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,35 +57,31 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: AppColors.background,
       body: BlocListener<UserBLoC, UserState>(
         listener: (context, state) {
+          SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+
           if (state is EmptyUserState) {
-            NavigationManager.instance.pushNamedAndRemoveUntil('/user_info');
+            NavigationManager.instance.pushReplacementNamed('/user_info');
           } else if (state is ExistUserState) {
-            NavigationManager.instance.pushNamedAndRemoveUntil(
+            NavigationManager.instance.pushReplacementNamed(
               '/user_additional_info',
             );
           } else if (state is ExistFullUserState) {
-            NavigationManager.instance.pushNamedAndRemoveUntil('/home');
+            NavigationManager.instance.pushReplacementNamed('/home');
           }
         },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                'Обработка данных',
-                style: TextStyle(
-                  color: Color(0xff334c71),
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              SizedBox(height: 100),
-              Icon(
-                Icons.album,
-                size: 100,
-              )
-            ],
-          ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Image.asset(
+              'assets/images/splash_background.png',
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover,
+            ),
+            Image.asset(
+              'assets/images/logo.png',
+            ),
+          ],
         ),
       ),
     );

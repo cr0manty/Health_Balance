@@ -34,11 +34,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   void initState() {
     super.initState();
     _userDataBLoC = BlocProvider.of<UserDataBLoC>(context);
-    _nameController.addListener(() {
-      _userDataBLoC.add(
-        UserDataEvent.fullNameChanged(_nameController.text),
-      );
-    });
   }
 
   @override
@@ -61,8 +56,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         },
         child: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
+          behavior: HitTestBehavior.opaque,
           child: ListView(
-            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
             children: [
               const SizedBox(height: 50),
               const Center(
@@ -107,6 +103,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 focus: _nameFocus,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
+                onChanged: (value) {
+                  _userDataBLoC.add(
+                    UserDataEvent.fullNameChanged(_nameController.text),
+                  );
+                },
                 onEditingComplete: FocusScope.of(context).unfocus,
               ),
               const Padding(
