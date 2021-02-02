@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
       appBar: const UserAppBar(),
       body: GridView(
         shrinkWrap: true,
+        physics: const AlwaysScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 20,

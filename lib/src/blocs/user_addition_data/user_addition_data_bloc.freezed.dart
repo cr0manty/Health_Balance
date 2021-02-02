@@ -21,8 +21,8 @@ class _$UserAdditionDataEventTearOff {
   }
 
 // ignore: unused_element
-  WeightDateChangedUserDataEvent weightDateChanged(String weight) {
-    return WeightDateChangedUserDataEvent(
+  WeightChangedUserDataEvent weightChanged(String weight) {
+    return WeightChangedUserDataEvent(
       weight,
     );
   }
@@ -31,6 +31,13 @@ class _$UserAdditionDataEventTearOff {
   HeightChangedUserDataEvent heightChanged(String height) {
     return HeightChangedUserDataEvent(
       height,
+    );
+  }
+
+// ignore: unused_element
+  LoadDataUserDataEvent loadData(UserData userData) {
+    return LoadDataUserDataEvent(
+      userData,
     );
   }
 
@@ -49,30 +56,34 @@ mixin _$UserAdditionDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult wristGirthChanged(String wristGirth),
-    @required TResult weightDateChanged(String weight),
+    @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult loadData(UserData userData),
     @required TResult submit(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult wristGirthChanged(String wristGirth),
-    TResult weightDateChanged(String weight),
+    TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    @required TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
   });
@@ -164,13 +175,15 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult wristGirthChanged(String wristGirth),
-    @required TResult weightDateChanged(String weight),
+    @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
     return wristGirthChanged(wristGirth);
   }
@@ -179,8 +192,9 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult wristGirthChanged(String wristGirth),
-    TResult weightDateChanged(String weight),
+    TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
   }) {
@@ -195,13 +209,15 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    @required TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
     return wristGirthChanged(this);
   }
@@ -210,8 +226,9 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
   }) {
@@ -235,40 +252,38 @@ abstract class WristGirthChangedUserDataEvent extends UserAdditionDataEvent {
 }
 
 /// @nodoc
-abstract class $WeightDateChangedUserDataEventCopyWith<$Res> {
-  factory $WeightDateChangedUserDataEventCopyWith(
-          WeightDateChangedUserDataEvent value,
-          $Res Function(WeightDateChangedUserDataEvent) then) =
-      _$WeightDateChangedUserDataEventCopyWithImpl<$Res>;
+abstract class $WeightChangedUserDataEventCopyWith<$Res> {
+  factory $WeightChangedUserDataEventCopyWith(WeightChangedUserDataEvent value,
+          $Res Function(WeightChangedUserDataEvent) then) =
+      _$WeightChangedUserDataEventCopyWithImpl<$Res>;
   $Res call({String weight});
 }
 
 /// @nodoc
-class _$WeightDateChangedUserDataEventCopyWithImpl<$Res>
+class _$WeightChangedUserDataEventCopyWithImpl<$Res>
     extends _$UserAdditionDataEventCopyWithImpl<$Res>
-    implements $WeightDateChangedUserDataEventCopyWith<$Res> {
-  _$WeightDateChangedUserDataEventCopyWithImpl(
-      WeightDateChangedUserDataEvent _value,
-      $Res Function(WeightDateChangedUserDataEvent) _then)
-      : super(_value, (v) => _then(v as WeightDateChangedUserDataEvent));
+    implements $WeightChangedUserDataEventCopyWith<$Res> {
+  _$WeightChangedUserDataEventCopyWithImpl(WeightChangedUserDataEvent _value,
+      $Res Function(WeightChangedUserDataEvent) _then)
+      : super(_value, (v) => _then(v as WeightChangedUserDataEvent));
 
   @override
-  WeightDateChangedUserDataEvent get _value =>
-      super._value as WeightDateChangedUserDataEvent;
+  WeightChangedUserDataEvent get _value =>
+      super._value as WeightChangedUserDataEvent;
 
   @override
   $Res call({
     Object weight = freezed,
   }) {
-    return _then(WeightDateChangedUserDataEvent(
+    return _then(WeightChangedUserDataEvent(
       weight == freezed ? _value.weight : weight as String,
     ));
   }
 }
 
 /// @nodoc
-class _$WeightDateChangedUserDataEvent extends WeightDateChangedUserDataEvent {
-  const _$WeightDateChangedUserDataEvent(this.weight)
+class _$WeightChangedUserDataEvent extends WeightChangedUserDataEvent {
+  const _$WeightChangedUserDataEvent(this.weight)
       : assert(weight != null),
         super._();
 
@@ -277,13 +292,13 @@ class _$WeightDateChangedUserDataEvent extends WeightDateChangedUserDataEvent {
 
   @override
   String toString() {
-    return 'UserAdditionDataEvent.weightDateChanged(weight: $weight)';
+    return 'UserAdditionDataEvent.weightChanged(weight: $weight)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is WeightDateChangedUserDataEvent &&
+        (other is WeightChangedUserDataEvent &&
             (identical(other.weight, weight) ||
                 const DeepCollectionEquality().equals(other.weight, weight)));
   }
@@ -294,37 +309,41 @@ class _$WeightDateChangedUserDataEvent extends WeightDateChangedUserDataEvent {
 
   @JsonKey(ignore: true)
   @override
-  $WeightDateChangedUserDataEventCopyWith<WeightDateChangedUserDataEvent>
-      get copyWith => _$WeightDateChangedUserDataEventCopyWithImpl<
-          WeightDateChangedUserDataEvent>(this, _$identity);
+  $WeightChangedUserDataEventCopyWith<WeightChangedUserDataEvent>
+      get copyWith =>
+          _$WeightChangedUserDataEventCopyWithImpl<WeightChangedUserDataEvent>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult wristGirthChanged(String wristGirth),
-    @required TResult weightDateChanged(String weight),
+    @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
-    return weightDateChanged(weight);
+    return weightChanged(weight);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult wristGirthChanged(String wristGirth),
-    TResult weightDateChanged(String weight),
+    TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (weightDateChanged != null) {
-      return weightDateChanged(weight);
+    if (weightChanged != null) {
+      return weightChanged(weight);
     }
     return orElse();
   }
@@ -333,43 +352,45 @@ class _$WeightDateChangedUserDataEvent extends WeightDateChangedUserDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    @required TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
-    return weightDateChanged(this);
+    return weightChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (weightDateChanged != null) {
-      return weightDateChanged(this);
+    if (weightChanged != null) {
+      return weightChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class WeightDateChangedUserDataEvent extends UserAdditionDataEvent {
-  const WeightDateChangedUserDataEvent._() : super._();
-  const factory WeightDateChangedUserDataEvent(String weight) =
-      _$WeightDateChangedUserDataEvent;
+abstract class WeightChangedUserDataEvent extends UserAdditionDataEvent {
+  const WeightChangedUserDataEvent._() : super._();
+  const factory WeightChangedUserDataEvent(String weight) =
+      _$WeightChangedUserDataEvent;
 
   String get weight;
   @JsonKey(ignore: true)
-  $WeightDateChangedUserDataEventCopyWith<WeightDateChangedUserDataEvent>
-      get copyWith;
+  $WeightChangedUserDataEventCopyWith<WeightChangedUserDataEvent> get copyWith;
 }
 
 /// @nodoc
@@ -439,13 +460,15 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult wristGirthChanged(String wristGirth),
-    @required TResult weightDateChanged(String weight),
+    @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
     return heightChanged(height);
   }
@@ -454,8 +477,9 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult wristGirthChanged(String wristGirth),
-    TResult weightDateChanged(String weight),
+    TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
   }) {
@@ -470,13 +494,15 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    @required TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
     return heightChanged(this);
   }
@@ -485,8 +511,9 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
   }) {
@@ -506,6 +533,147 @@ abstract class HeightChangedUserDataEvent extends UserAdditionDataEvent {
   String get height;
   @JsonKey(ignore: true)
   $HeightChangedUserDataEventCopyWith<HeightChangedUserDataEvent> get copyWith;
+}
+
+/// @nodoc
+abstract class $LoadDataUserDataEventCopyWith<$Res> {
+  factory $LoadDataUserDataEventCopyWith(LoadDataUserDataEvent value,
+          $Res Function(LoadDataUserDataEvent) then) =
+      _$LoadDataUserDataEventCopyWithImpl<$Res>;
+  $Res call({UserData userData});
+}
+
+/// @nodoc
+class _$LoadDataUserDataEventCopyWithImpl<$Res>
+    extends _$UserAdditionDataEventCopyWithImpl<$Res>
+    implements $LoadDataUserDataEventCopyWith<$Res> {
+  _$LoadDataUserDataEventCopyWithImpl(
+      LoadDataUserDataEvent _value, $Res Function(LoadDataUserDataEvent) _then)
+      : super(_value, (v) => _then(v as LoadDataUserDataEvent));
+
+  @override
+  LoadDataUserDataEvent get _value => super._value as LoadDataUserDataEvent;
+
+  @override
+  $Res call({
+    Object userData = freezed,
+  }) {
+    return _then(LoadDataUserDataEvent(
+      userData == freezed ? _value.userData : userData as UserData,
+    ));
+  }
+}
+
+/// @nodoc
+class _$LoadDataUserDataEvent extends LoadDataUserDataEvent {
+  const _$LoadDataUserDataEvent(this.userData)
+      : assert(userData != null),
+        super._();
+
+  @override
+  final UserData userData;
+
+  @override
+  String toString() {
+    return 'UserAdditionDataEvent.loadData(userData: $userData)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LoadDataUserDataEvent &&
+            (identical(other.userData, userData) ||
+                const DeepCollectionEquality()
+                    .equals(other.userData, userData)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userData);
+
+  @JsonKey(ignore: true)
+  @override
+  $LoadDataUserDataEventCopyWith<LoadDataUserDataEvent> get copyWith =>
+      _$LoadDataUserDataEventCopyWithImpl<LoadDataUserDataEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult wristGirthChanged(String wristGirth),
+    @required TResult weightChanged(String weight),
+    @required TResult heightChanged(String height),
+    @required TResult loadData(UserData userData),
+    @required TResult submit(),
+  }) {
+    assert(wristGirthChanged != null);
+    assert(weightChanged != null);
+    assert(heightChanged != null);
+    assert(loadData != null);
+    assert(submit != null);
+    return loadData(userData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult wristGirthChanged(String wristGirth),
+    TResult weightChanged(String weight),
+    TResult heightChanged(String height),
+    TResult loadData(UserData userData),
+    TResult submit(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loadData != null) {
+      return loadData(userData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
+    @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
+    @required TResult submit(SubmitUserDataEvent value),
+  }) {
+    assert(wristGirthChanged != null);
+    assert(weightChanged != null);
+    assert(heightChanged != null);
+    assert(loadData != null);
+    assert(submit != null);
+    return loadData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
+    TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
+    TResult submit(SubmitUserDataEvent value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loadData != null) {
+      return loadData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadDataUserDataEvent extends UserAdditionDataEvent {
+  const LoadDataUserDataEvent._() : super._();
+  const factory LoadDataUserDataEvent(UserData userData) =
+      _$LoadDataUserDataEvent;
+
+  UserData get userData;
+  @JsonKey(ignore: true)
+  $LoadDataUserDataEventCopyWith<LoadDataUserDataEvent> get copyWith;
 }
 
 /// @nodoc
@@ -548,13 +716,15 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult wristGirthChanged(String wristGirth),
-    @required TResult weightDateChanged(String weight),
+    @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
     return submit();
   }
@@ -563,8 +733,9 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult wristGirthChanged(String wristGirth),
-    TResult weightDateChanged(String weight),
+    TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
   }) {
@@ -579,13 +750,15 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    @required TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
-    assert(weightDateChanged != null);
+    assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(loadData != null);
     assert(submit != null);
     return submit(this);
   }
@@ -594,8 +767,9 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
-    TResult weightDateChanged(WeightDateChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
   }) {

@@ -17,11 +17,14 @@ abstract class UserAdditionDataEvent with _$UserAdditionDataEvent {
   const factory UserAdditionDataEvent.wristGirthChanged(String wristGirth) =
       WristGirthChangedUserDataEvent;
 
-  const factory UserAdditionDataEvent.weightDateChanged(String weight) =
-      WeightDateChangedUserDataEvent;
+  const factory UserAdditionDataEvent.weightChanged(String weight) =
+      WeightChangedUserDataEvent;
 
   const factory UserAdditionDataEvent.heightChanged(String height) =
       HeightChangedUserDataEvent;
+
+  const factory UserAdditionDataEvent.loadData(UserData userData) =
+      LoadDataUserDataEvent;
 
   const factory UserAdditionDataEvent.submit() = SubmitUserDataEvent;
 }
@@ -31,12 +34,14 @@ class UserAdditionDataState extends Equatable {
   final Height height;
   final Weight weight;
   final WristGirth wristGirth;
+  final bool isEdited;
 
   const UserAdditionDataState({
     this.status = FormzStatus.pure,
     this.height = const Height.pure(),
     this.weight = const Weight.pure(),
     this.wristGirth = const WristGirth.pure(),
+    this.isEdited = false,
   });
 
   UserAdditionDataState copyWith({
@@ -44,12 +49,14 @@ class UserAdditionDataState extends Equatable {
     Height height,
     Weight weight,
     WristGirth wristGirth,
+    bool isEdited,
   }) {
     return UserAdditionDataState(
       status: status ?? this.status,
       height: height ?? this.height,
       weight: weight ?? this.weight,
       wristGirth: wristGirth ?? this.wristGirth,
+      isEdited: isEdited ?? this.isEdited,
     );
   }
 
@@ -74,8 +81,9 @@ class UserAdditionDataBLoC
   Stream<UserAdditionDataState> mapEventToState(UserAdditionDataEvent event) =>
       event.when<Stream<UserAdditionDataState>>(
         wristGirthChanged: _wristGirthChanged,
-        weightDateChanged: _weightDateChanged,
+        weightChanged: _weightChanged,
         heightChanged: _heightChanged,
+        loadData: _loadData,
         submit: _submit,
       );
 
@@ -91,7 +99,15 @@ class UserAdditionDataBLoC
     );
   }
 
-  Stream<UserAdditionDataState> _weightDateChanged(String weight) async* {
+  Stream<UserAdditionDataState> _loadData(UserData userData) async* {
+    yield state.copyWith(
+      wristGirth: WristGirth.dirty(userData.wristGirth.toString()),
+      weight: Weight.dirty(userData.weight.toString()),
+      height: Height.dirty(userData.height.toString()),
+    );
+  }
+
+  Stream<UserAdditionDataState> _weightChanged(String weight) async* {
     final weightValidator = Weight.dirty(weight);
     yield state.copyWith(
       weight: weightValidator,

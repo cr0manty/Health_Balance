@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
-import 'package:health_balance/src/blocs/user_addition_data/user_addition_data_bloc.dart';
-import 'package:health_balance/utils/constants.dart';
-import 'package:health_balance/widgets/inputs/text_input.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
+import 'package:health_balance/src/blocs/user_addition_data/user_addition_data_bloc.dart';
+import 'package:health_balance/utils/constants.dart';
+import 'package:health_balance/widgets/inputs/text_input.dart';
 
 @immutable
-class UserAdditionInfoScreen extends StatefulWidget {
-  const UserAdditionInfoScreen({
+class UserProfile extends StatefulWidget {
+  const UserProfile({
     Key key,
   }) : super(key: key);
 
+  static _UserProfileState of(BuildContext context) =>
+      context.findAncestorStateOfType<_UserProfileState>();
+
   @override
-  _UserAdditionInfoScreenState createState() => _UserAdditionInfoScreenState();
+  State<UserProfile> createState() => _UserProfileState();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) =>
@@ -24,13 +27,13 @@ class UserAdditionInfoScreen extends StatefulWidget {
           ..add(
             StringProperty(
               'description',
-              'UserInfoScreen StatefulWidget',
+              'UserProfile StatefulWidget',
             ),
           ),
       );
 }
 
-class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
+class _UserProfileState extends State<UserProfile> {
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _heightController = TextEditingController();
   final TextEditingController _wristGirthController = TextEditingController();
@@ -46,7 +49,7 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
           ..add(
             StringProperty(
               'description',
-              '_UserAdditionInfoScreenState State<UserAdditionInfoScreen>',
+              '_UserProfileState State<UserProfile>',
             ),
           ),
       );
@@ -62,6 +65,13 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
   void initState() {
     super.initState();
     _userAdditionDataBLoC = BlocProvider.of<UserAdditionDataBLoC>(context);
+    final user = BlocProvider.of<UserBLoC>(context).state.user;
+    _userAdditionDataBLoC.add(
+      UserAdditionDataEvent.loadData(user.userData),
+    );
+    _heightController.text = user.userData.height.toInt().toString();
+    _weightController.text = user.userData.weight.toInt().toString();
+    _wristGirthController.text = user.userData.wristGirth.toInt().toString();
   }
 
   @override
@@ -75,37 +85,56 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: BlocListener<UserBLoC, UserState>(
-        listenWhen: (previous, current) =>
-            NavigationManager.instance.route != '/home',
-        listener: (context, state) {
-          if (state is ExistFullUserState) {
-            NavigationManager.instance.pushNamedAndRemoveUntil('/home');
-          }
-        },
-        child: GestureDetector(
-          onTap: FocusScope.of(context).unfocus,
-          behavior: HitTestBehavior.opaque,
-          child: ListView(
-            physics: const ClampingScrollPhysics(),
-            children: [
-              const SizedBox(height: 50),
-              const Center(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(
+          color: Color(0xFF334C71),
+        ),
+        brightness: Brightness.light,
+        elevation: 0,
+        actions: [
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              BlocProvider.of<UserBLoC>(context).add(const UserEvent.delete());
+              NavigationManager.instance.pushNamedAndRemoveUntil('/user_info');
+            },
+            child: const Center(
+              child: Padding(
+                padding: EdgeInsets.only(right: 36.0, top: 10),
                 child: Text(
-                  'Шаг 2 из 2',
+                  'Выйти',
                   style: TextStyle(
                     color: Color(0xff334c71),
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: AppColors.background,
+      body: BlocListener<UserBLoC, UserState>(
+        listenWhen: (previous, current) =>
+            NavigationManager.instance.route != '/',
+        listener: (context, state) {
+          if (state is ExistFullUserState) {
+            NavigationManager.instance.pushNamedAndRemoveUntil('/');
+          }
+        },
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: FocusScope.of(context).unfocus,
+          child: ListView(
+            physics: const ClampingScrollPhysics(),
+            children: [
               const Padding(
                 padding: EdgeInsets.only(top: 16.0),
                 child: Center(
                   child: Text(
-                    'Пожалуйста, заполните поля',
+                    'Редактировать данные',
                     style: TextStyle(
                       color: Color(0xff334c71),
                       fontSize: 18,
@@ -261,7 +290,7 @@ class _UserAdditionInfoScreenState extends State<UserAdditionInfoScreen> {
                         height: 70,
                         child: Align(
                           child: Text(
-                            'Далее',
+                            'Сохранить',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 24,

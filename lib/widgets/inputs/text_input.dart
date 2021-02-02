@@ -9,6 +9,7 @@ class TextInput extends StatelessWidget {
   final FocusNode focus;
   final bool enabled;
   final VoidCallback onEditingComplete;
+  final ValueChanged<String> onChanged;
   final TextInputAction textInputAction;
   final TextInputType keyboardType;
 
@@ -20,6 +21,7 @@ class TextInput extends StatelessWidget {
     this.enabled = true,
     this.textInputAction,
     this.keyboardType,
+    this.onChanged,
     Key key,
   })  : assert(onEditingComplete != null, 'onEditingComplete must not be null'),
         super(key: key);
@@ -44,6 +46,7 @@ class TextInput extends StatelessWidget {
               height: 1.5,
               color: Colors.black,
             ),
+            onChanged: onChanged,
             onSubmitted: (_) => onEditingComplete(),
             textInputAction: textInputAction,
             keyboardType: keyboardType,

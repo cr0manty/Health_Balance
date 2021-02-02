@@ -31,4 +31,17 @@ class UserData extends HiveObject {
 
   bool get isNotEmpty => weight != null && height != null && wristGirth != null;
 
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserData &&
+          runtimeType == other.runtimeType &&
+          weight == other.weight &&
+          height == other.height &&
+          wristGirth == other.wristGirth;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => weight.hashCode ^ height.hashCode ^ wristGirth.hashCode;
 }
