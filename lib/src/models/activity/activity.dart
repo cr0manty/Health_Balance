@@ -41,6 +41,7 @@ enum ActivityValue {
   bmi,
   water,
   calories,
+  hipWaist
 }
 
 extension ActivityValueExtension on ActivityValue {
@@ -66,6 +67,31 @@ extension ActivityValueExtension on ActivityValue {
           user.userData.weight,
           user.userData.height,
         );
+      case ActivityValue.hipWaist:
+        return _hipWaist(
+          user.userData.hipGirth,
+          user.userData.waistCircumference,
+        ).toStringAsFixed(2);
+    }
+    return '-';
+  }
+
+  double _hipWaist(double hipGirth, double waistCircumference) {
+    return waistCircumference / hipGirth;
+  }
+
+  String _hipWaistValue(double hipGirth, double waistCircumference) {
+    final value = _hipWaist(hipGirth, waistCircumference);
+    if (value < 0.75) {
+      return 'Превосходно';
+    } else if (value >= 0.75 && value <= 0.8) {
+      return 'Хорошо';
+    } else if (value >= 0.8 && value <= 0.85) {
+      return 'Неплохо';
+    } else if (value >= 0.85 && value <= 0.9) {
+      return 'Плохо';
+    } else if (value >= 0.9) {
+      return 'Очень плохо';
     }
     return '-';
   }
@@ -90,7 +116,15 @@ extension ActivityValueExtension on ActivityValue {
         useCard: true,
         value: _bloodPressureAddition(user.age, user.userData.weight),
       );
+    } else if (this == ActivityValue.hipWaist) {
+      return AdditionData(
+        _hipWaistValue(
+          user.userData.hipGirth,
+          user.userData.waistCircumference,
+        ),
+      );
     }
+
     return null;
   }
 
@@ -162,10 +196,12 @@ extension ActivityValueExtension on ActivityValue {
   String _calories(Gender gender, double weight, double height, int age) {
     if (gender == Gender.male) {
       return (88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age))
-          .round().toString();
+          .round()
+          .toString();
     } else if (gender == Gender.female) {
       return (447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age))
-          .round().toString();
+          .round()
+          .toString();
     }
     return '-';
   }

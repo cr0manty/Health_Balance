@@ -2,7 +2,7 @@ name: health_balance
 description: A new Flutter application.
 
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,23 +11,23 @@ dependencies:
   flutter:
     sdk: flutter
 
-  freezed_annotation:
-  flutter_svg:
+  freezed_annotation: 0.12.0
+  flutter_svg: 0.19.1
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  equatable:
-  hive:
-  hive_generator:
-  build_runner:
-  freezed:
-  path_provider:
-  formz:
-  flutter_bloc:
-  intl:
+  equatable: 1.2.5
+  hive: 1.4.4+1
+  hive_generator: 0.8.2
+  build_runner: 1.10.13
+  freezed: 0.12.7
+  path_provider: 1.6.27
+  formz: 0.3.2
+  flutter_bloc: 6.1.1
+  intl: 0.16.1
 
 
 flutter:

@@ -26,6 +26,7 @@ abstract class UserState with _$UserState {
   const UserState._();
 
   const factory UserState.initial() = InitialUserState;
+  const factory UserState.loading() = LoadingUserState;
 
   const factory UserState.empty() = EmptyUserState;
 
@@ -52,6 +53,8 @@ class UserBLoC extends Bloc<UserEvent, UserState> {
 
   Stream<UserState> _create(User user) async* {
     try {
+      yield const UserState.loading();
+
       final isUserSet = await _repository.createUser(user).timeout(
             const Duration(seconds: 30),
           );

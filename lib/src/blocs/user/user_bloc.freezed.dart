@@ -570,6 +570,11 @@ class _$UserStateTearOff {
   }
 
 // ignore: unused_element
+  LoadingUserState loading() {
+    return const LoadingUserState();
+  }
+
+// ignore: unused_element
   EmptyUserState empty() {
     return const EmptyUserState();
   }
@@ -598,6 +603,7 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult empty(),
     @required TResult exist(User user),
     @required TResult existFull(User user),
@@ -605,6 +611,7 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult empty(),
     TResult exist(User user),
     TResult existFull(User user),
@@ -613,6 +620,7 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(InitialUserState value),
+    @required TResult loading(LoadingUserState value),
     @required TResult empty(EmptyUserState value),
     @required TResult exist(ExistUserState value),
     @required TResult existFull(ExistFullUserState value),
@@ -620,6 +628,7 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(InitialUserState value),
+    TResult loading(LoadingUserState value),
     TResult empty(EmptyUserState value),
     TResult exist(ExistUserState value),
     TResult existFull(ExistFullUserState value),
@@ -681,11 +690,13 @@ class _$InitialUserState extends InitialUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult empty(),
     @required TResult exist(User user),
     @required TResult existFull(User user),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -696,6 +707,7 @@ class _$InitialUserState extends InitialUserState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult empty(),
     TResult exist(User user),
     TResult existFull(User user),
@@ -712,11 +724,13 @@ class _$InitialUserState extends InitialUserState {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(InitialUserState value),
+    @required TResult loading(LoadingUserState value),
     @required TResult empty(EmptyUserState value),
     @required TResult exist(ExistUserState value),
     @required TResult existFull(ExistFullUserState value),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -727,6 +741,7 @@ class _$InitialUserState extends InitialUserState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(InitialUserState value),
+    TResult loading(LoadingUserState value),
     TResult empty(EmptyUserState value),
     TResult exist(ExistUserState value),
     TResult existFull(ExistFullUserState value),
@@ -743,6 +758,115 @@ class _$InitialUserState extends InitialUserState {
 abstract class InitialUserState extends UserState {
   const InitialUserState._() : super._();
   const factory InitialUserState() = _$InitialUserState;
+}
+
+/// @nodoc
+abstract class $LoadingUserStateCopyWith<$Res> {
+  factory $LoadingUserStateCopyWith(
+          LoadingUserState value, $Res Function(LoadingUserState) then) =
+      _$LoadingUserStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoadingUserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
+    implements $LoadingUserStateCopyWith<$Res> {
+  _$LoadingUserStateCopyWithImpl(
+      LoadingUserState _value, $Res Function(LoadingUserState) _then)
+      : super(_value, (v) => _then(v as LoadingUserState));
+
+  @override
+  LoadingUserState get _value => super._value as LoadingUserState;
+}
+
+/// @nodoc
+class _$LoadingUserState extends LoadingUserState {
+  const _$LoadingUserState() : super._();
+
+  @override
+  String toString() {
+    return 'UserState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoadingUserState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult empty(),
+    @required TResult exist(User user),
+    @required TResult existFull(User user),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(empty != null);
+    assert(exist != null);
+    assert(existFull != null);
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult empty(),
+    TResult exist(User user),
+    TResult existFull(User user),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(InitialUserState value),
+    @required TResult loading(LoadingUserState value),
+    @required TResult empty(EmptyUserState value),
+    @required TResult exist(ExistUserState value),
+    @required TResult existFull(ExistFullUserState value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(empty != null);
+    assert(exist != null);
+    assert(existFull != null);
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(InitialUserState value),
+    TResult loading(LoadingUserState value),
+    TResult empty(EmptyUserState value),
+    TResult exist(ExistUserState value),
+    TResult existFull(ExistFullUserState value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadingUserState extends UserState {
+  const LoadingUserState._() : super._();
+  const factory LoadingUserState() = _$LoadingUserState;
 }
 
 /// @nodoc
@@ -784,11 +908,13 @@ class _$EmptyUserState extends EmptyUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult empty(),
     @required TResult exist(User user),
     @required TResult existFull(User user),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -799,6 +925,7 @@ class _$EmptyUserState extends EmptyUserState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult empty(),
     TResult exist(User user),
     TResult existFull(User user),
@@ -815,11 +942,13 @@ class _$EmptyUserState extends EmptyUserState {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(InitialUserState value),
+    @required TResult loading(LoadingUserState value),
     @required TResult empty(EmptyUserState value),
     @required TResult exist(ExistUserState value),
     @required TResult existFull(ExistFullUserState value),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -830,6 +959,7 @@ class _$EmptyUserState extends EmptyUserState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(InitialUserState value),
+    TResult loading(LoadingUserState value),
     TResult empty(EmptyUserState value),
     TResult exist(ExistUserState value),
     TResult existFull(ExistFullUserState value),
@@ -911,11 +1041,13 @@ class _$ExistUserState extends ExistUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult empty(),
     @required TResult exist(User user),
     @required TResult existFull(User user),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -926,6 +1058,7 @@ class _$ExistUserState extends ExistUserState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult empty(),
     TResult exist(User user),
     TResult existFull(User user),
@@ -942,11 +1075,13 @@ class _$ExistUserState extends ExistUserState {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(InitialUserState value),
+    @required TResult loading(LoadingUserState value),
     @required TResult empty(EmptyUserState value),
     @required TResult exist(ExistUserState value),
     @required TResult existFull(ExistFullUserState value),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -957,6 +1092,7 @@ class _$ExistUserState extends ExistUserState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(InitialUserState value),
+    TResult loading(LoadingUserState value),
     TResult empty(EmptyUserState value),
     TResult exist(ExistUserState value),
     TResult existFull(ExistFullUserState value),
@@ -1043,11 +1179,13 @@ class _$ExistFullUserState extends ExistFullUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult empty(),
     @required TResult exist(User user),
     @required TResult existFull(User user),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -1058,6 +1196,7 @@ class _$ExistFullUserState extends ExistFullUserState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult empty(),
     TResult exist(User user),
     TResult existFull(User user),
@@ -1074,11 +1213,13 @@ class _$ExistFullUserState extends ExistFullUserState {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(InitialUserState value),
+    @required TResult loading(LoadingUserState value),
     @required TResult empty(EmptyUserState value),
     @required TResult exist(ExistUserState value),
     @required TResult existFull(ExistFullUserState value),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(empty != null);
     assert(exist != null);
     assert(existFull != null);
@@ -1089,6 +1230,7 @@ class _$ExistFullUserState extends ExistFullUserState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(InitialUserState value),
+    TResult loading(LoadingUserState value),
     TResult empty(EmptyUserState value),
     TResult exist(ExistUserState value),
     TResult existFull(ExistFullUserState value),

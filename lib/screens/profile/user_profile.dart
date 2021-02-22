@@ -6,6 +6,8 @@ import 'package:health_balance/router/navigation.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/blocs/user_addition_data/user_addition_data_bloc.dart';
 import 'package:health_balance/src/formz/user_data/height.dart';
+import 'package:health_balance/src/formz/user_data/hip_girth.dart';
+import 'package:health_balance/src/formz/user_data/waist_circumference.dart';
 import 'package:health_balance/src/formz/user_data/weight.dart';
 import 'package:health_balance/src/formz/user_data/wrist_girth.dart';
 import 'package:health_balance/utils/constants.dart';
@@ -40,6 +42,11 @@ class _UserProfileState extends State<UserProfile> {
   final TextEditingController _weightController = TextEditingController();
   final TextEditingController _heightController = TextEditingController();
   final TextEditingController _wristGirthController = TextEditingController();
+  final TextEditingController _waistCircumferenceController =
+      TextEditingController();
+  final TextEditingController _hipGirthController = TextEditingController();
+  final FocusNode _waistCircumferenceFocus = FocusNode();
+  final FocusNode _hipGirthFocus = FocusNode();
   final FocusNode _weightFocus = FocusNode();
   final FocusNode _heightFocus = FocusNode();
   final FocusNode _wristGirthFocus = FocusNode();
@@ -68,16 +75,16 @@ class _UserProfileState extends State<UserProfile> {
   void initState() {
     super.initState();
     _userAdditionDataBLoC = BlocProvider.of<UserAdditionDataBLoC>(context);
-    final user = BlocProvider
-        .of<UserBLoC>(context)
-        .state
-        .user;
+    final user = BlocProvider.of<UserBLoC>(context).state.user;
     _userAdditionDataBLoC.add(
       UserAdditionDataEvent.loadData(user.userData),
     );
     _heightController.text = user.userData.height.toInt().toString();
     _weightController.text = user.userData.weight.toInt().toString();
     _wristGirthController.text = user.userData.wristGirth.toInt().toString();
+    _waistCircumferenceController.text =
+        user.userData.waistCircumference.toInt().toString();
+    _hipGirthController.text = user.userData.hipGirth.toInt().toString();
   }
 
   @override
@@ -85,6 +92,8 @@ class _UserProfileState extends State<UserProfile> {
     _wristGirthController?.dispose();
     _weightController?.dispose();
     _heightController?.dispose();
+    _hipGirthController?.dispose();
+    _waistCircumferenceController?.dispose();
     super.dispose();
   }
 
@@ -124,17 +133,15 @@ class _UserProfileState extends State<UserProfile> {
       backgroundColor: AppColors.background,
       body: BlocListener<UserBLoC, UserState>(
         listenWhen: (previous, current) =>
-        NavigationManager.instance.route != '/',
+            NavigationManager.instance.route != '/',
         listener: (context, state) {
           if (state is ExistFullUserState) {
-            NavigationManager.instance.pushNamedAndRemoveUntil('/');
+            NavigationManager.instance.pushNamedAndRemoveUntil('/home');
           }
         },
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: FocusScope
-              .of(context)
-              .unfocus,
+          onTap: FocusScope.of(context).unfocus,
           child: ListView(
             physics: const ClampingScrollPhysics(),
             children: [
@@ -291,12 +298,107 @@ class _UserProfileState extends State<UserProfile> {
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              const Padding(
+                padding: EdgeInsets.only(top: 30.0, left: 30.0, bottom: 16.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Обхват талии',
+                    style: TextStyle(
+                      color: Color(0xff334c71),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              TextInput(
+                controller: _waistCircumferenceController,
+                focus: _waistCircumferenceFocus,
+                onEditingComplete: () =>
+                    FocusScope.of(context).requestFocus(_hipGirthFocus),
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  _userAdditionDataBLoC.add(
+                    UserAdditionDataEvent.waistCircumferenceChanged(value),
+                  );
+                },
+                validator: const WaistCircumference.pure(),
+                helpText: 'Ваш обхват талии может быть '
+                    'от ${WaistCircumference.minWaistCircumference} '
+                    'до ${WaistCircumference.maxWaistCircumference}',
+                suffix: IgnorePointer(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Text(
+                        'См',
+                        style: TextStyle(
+                          color: AppColors.blueConstant,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 30.0, left: 30.0, bottom: 16.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Обхват бедер',
+                    style: TextStyle(
+                      color: Color(0xff334c71),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+              TextInput(
+                controller: _hipGirthController,
+                focus: _hipGirthFocus,
+                onEditingComplete: _nextStep,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  _userAdditionDataBLoC.add(
+                    UserAdditionDataEvent.hipGirthChanged(value),
+                  );
+                },
+                validator: const HipGirth.pure(),
+                helpText: 'Ваш обхват бедер может быть '
+                    'от ${HipGirth.minHipGirth} '
+                    'до ${HipGirth.maxHipGirth}',
+                suffix: IgnorePointer(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Text(
+                        'См',
+                        style: TextStyle(
+                          color: AppColors.blueConstant,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 57.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 57.0,
+                  vertical: 50,
+                ),
                 child: BlocBuilder<UserAdditionDataBLoC, UserAdditionDataState>(
                   buildWhen: (previous, current) =>
-                  previous.status != current.status,
+                      previous.status != current.status,
                   builder: (context, state) {
                     return FlatButton(
                       color: const Color(0xffff60b2),

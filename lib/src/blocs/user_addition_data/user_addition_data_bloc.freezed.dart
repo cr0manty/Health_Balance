@@ -35,6 +35,21 @@ class _$UserAdditionDataEventTearOff {
   }
 
 // ignore: unused_element
+  WaistCircumferenceChangedUserDataEvent waistCircumferenceChanged(
+      String value) {
+    return WaistCircumferenceChangedUserDataEvent(
+      value,
+    );
+  }
+
+// ignore: unused_element
+  HipGirthChangedUserDataEvent hipGirthChanged(String value) {
+    return HipGirthChangedUserDataEvent(
+      value,
+    );
+  }
+
+// ignore: unused_element
   LoadDataUserDataEvent loadData(UserData userData) {
     return LoadDataUserDataEvent(
       userData,
@@ -58,6 +73,8 @@ mixin _$UserAdditionDataEvent {
     @required TResult wristGirthChanged(String wristGirth),
     @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
     @required TResult loadData(UserData userData),
     @required TResult submit(),
   });
@@ -66,6 +83,8 @@ mixin _$UserAdditionDataEvent {
     TResult wristGirthChanged(String wristGirth),
     TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
     TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
@@ -75,6 +94,10 @@ mixin _$UserAdditionDataEvent {
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   });
@@ -83,6 +106,9 @@ mixin _$UserAdditionDataEvent {
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
@@ -177,12 +203,16 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
     @required TResult wristGirthChanged(String wristGirth),
     @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
     @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return wristGirthChanged(wristGirth);
@@ -194,6 +224,8 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
     TResult wristGirthChanged(String wristGirth),
     TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
     TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
@@ -211,12 +243,18 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return wristGirthChanged(this);
@@ -228,6 +266,9 @@ class _$WristGirthChangedUserDataEvent extends WristGirthChangedUserDataEvent {
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
@@ -320,12 +361,16 @@ class _$WeightChangedUserDataEvent extends WeightChangedUserDataEvent {
     @required TResult wristGirthChanged(String wristGirth),
     @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
     @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return weightChanged(weight);
@@ -337,6 +382,8 @@ class _$WeightChangedUserDataEvent extends WeightChangedUserDataEvent {
     TResult wristGirthChanged(String wristGirth),
     TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
     TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
@@ -354,12 +401,18 @@ class _$WeightChangedUserDataEvent extends WeightChangedUserDataEvent {
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return weightChanged(this);
@@ -371,6 +424,9 @@ class _$WeightChangedUserDataEvent extends WeightChangedUserDataEvent {
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
@@ -462,12 +518,16 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
     @required TResult wristGirthChanged(String wristGirth),
     @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
     @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return heightChanged(height);
@@ -479,6 +539,8 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
     TResult wristGirthChanged(String wristGirth),
     TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
     TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
@@ -496,12 +558,18 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return heightChanged(this);
@@ -513,6 +581,9 @@ class _$HeightChangedUserDataEvent extends HeightChangedUserDataEvent {
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
@@ -533,6 +604,328 @@ abstract class HeightChangedUserDataEvent extends UserAdditionDataEvent {
   String get height;
   @JsonKey(ignore: true)
   $HeightChangedUserDataEventCopyWith<HeightChangedUserDataEvent> get copyWith;
+}
+
+/// @nodoc
+abstract class $WaistCircumferenceChangedUserDataEventCopyWith<$Res> {
+  factory $WaistCircumferenceChangedUserDataEventCopyWith(
+          WaistCircumferenceChangedUserDataEvent value,
+          $Res Function(WaistCircumferenceChangedUserDataEvent) then) =
+      _$WaistCircumferenceChangedUserDataEventCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$WaistCircumferenceChangedUserDataEventCopyWithImpl<$Res>
+    extends _$UserAdditionDataEventCopyWithImpl<$Res>
+    implements $WaistCircumferenceChangedUserDataEventCopyWith<$Res> {
+  _$WaistCircumferenceChangedUserDataEventCopyWithImpl(
+      WaistCircumferenceChangedUserDataEvent _value,
+      $Res Function(WaistCircumferenceChangedUserDataEvent) _then)
+      : super(
+            _value, (v) => _then(v as WaistCircumferenceChangedUserDataEvent));
+
+  @override
+  WaistCircumferenceChangedUserDataEvent get _value =>
+      super._value as WaistCircumferenceChangedUserDataEvent;
+
+  @override
+  $Res call({
+    Object value = freezed,
+  }) {
+    return _then(WaistCircumferenceChangedUserDataEvent(
+      value == freezed ? _value.value : value as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$WaistCircumferenceChangedUserDataEvent
+    extends WaistCircumferenceChangedUserDataEvent {
+  const _$WaistCircumferenceChangedUserDataEvent(this.value)
+      : assert(value != null),
+        super._();
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'UserAdditionDataEvent.waistCircumferenceChanged(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is WaistCircumferenceChangedUserDataEvent &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  $WaistCircumferenceChangedUserDataEventCopyWith<
+          WaistCircumferenceChangedUserDataEvent>
+      get copyWith => _$WaistCircumferenceChangedUserDataEventCopyWithImpl<
+          WaistCircumferenceChangedUserDataEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult wristGirthChanged(String wristGirth),
+    @required TResult weightChanged(String weight),
+    @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
+    @required TResult loadData(UserData userData),
+    @required TResult submit(),
+  }) {
+    assert(wristGirthChanged != null);
+    assert(weightChanged != null);
+    assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
+    assert(loadData != null);
+    assert(submit != null);
+    return waistCircumferenceChanged(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult wristGirthChanged(String wristGirth),
+    TResult weightChanged(String weight),
+    TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
+    TResult loadData(UserData userData),
+    TResult submit(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (waistCircumferenceChanged != null) {
+      return waistCircumferenceChanged(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
+    @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
+    @required TResult submit(SubmitUserDataEvent value),
+  }) {
+    assert(wristGirthChanged != null);
+    assert(weightChanged != null);
+    assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
+    assert(loadData != null);
+    assert(submit != null);
+    return waistCircumferenceChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
+    TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
+    TResult submit(SubmitUserDataEvent value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (waistCircumferenceChanged != null) {
+      return waistCircumferenceChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WaistCircumferenceChangedUserDataEvent
+    extends UserAdditionDataEvent {
+  const WaistCircumferenceChangedUserDataEvent._() : super._();
+  const factory WaistCircumferenceChangedUserDataEvent(String value) =
+      _$WaistCircumferenceChangedUserDataEvent;
+
+  String get value;
+  @JsonKey(ignore: true)
+  $WaistCircumferenceChangedUserDataEventCopyWith<
+      WaistCircumferenceChangedUserDataEvent> get copyWith;
+}
+
+/// @nodoc
+abstract class $HipGirthChangedUserDataEventCopyWith<$Res> {
+  factory $HipGirthChangedUserDataEventCopyWith(
+          HipGirthChangedUserDataEvent value,
+          $Res Function(HipGirthChangedUserDataEvent) then) =
+      _$HipGirthChangedUserDataEventCopyWithImpl<$Res>;
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$HipGirthChangedUserDataEventCopyWithImpl<$Res>
+    extends _$UserAdditionDataEventCopyWithImpl<$Res>
+    implements $HipGirthChangedUserDataEventCopyWith<$Res> {
+  _$HipGirthChangedUserDataEventCopyWithImpl(
+      HipGirthChangedUserDataEvent _value,
+      $Res Function(HipGirthChangedUserDataEvent) _then)
+      : super(_value, (v) => _then(v as HipGirthChangedUserDataEvent));
+
+  @override
+  HipGirthChangedUserDataEvent get _value =>
+      super._value as HipGirthChangedUserDataEvent;
+
+  @override
+  $Res call({
+    Object value = freezed,
+  }) {
+    return _then(HipGirthChangedUserDataEvent(
+      value == freezed ? _value.value : value as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$HipGirthChangedUserDataEvent extends HipGirthChangedUserDataEvent {
+  const _$HipGirthChangedUserDataEvent(this.value)
+      : assert(value != null),
+        super._();
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'UserAdditionDataEvent.hipGirthChanged(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is HipGirthChangedUserDataEvent &&
+            (identical(other.value, value) ||
+                const DeepCollectionEquality().equals(other.value, value)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(value);
+
+  @JsonKey(ignore: true)
+  @override
+  $HipGirthChangedUserDataEventCopyWith<HipGirthChangedUserDataEvent>
+      get copyWith => _$HipGirthChangedUserDataEventCopyWithImpl<
+          HipGirthChangedUserDataEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult wristGirthChanged(String wristGirth),
+    @required TResult weightChanged(String weight),
+    @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
+    @required TResult loadData(UserData userData),
+    @required TResult submit(),
+  }) {
+    assert(wristGirthChanged != null);
+    assert(weightChanged != null);
+    assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
+    assert(loadData != null);
+    assert(submit != null);
+    return hipGirthChanged(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult wristGirthChanged(String wristGirth),
+    TResult weightChanged(String weight),
+    TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
+    TResult loadData(UserData userData),
+    TResult submit(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (hipGirthChanged != null) {
+      return hipGirthChanged(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
+    @required TResult weightChanged(WeightChangedUserDataEvent value),
+    @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
+    @required TResult loadData(LoadDataUserDataEvent value),
+    @required TResult submit(SubmitUserDataEvent value),
+  }) {
+    assert(wristGirthChanged != null);
+    assert(weightChanged != null);
+    assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
+    assert(loadData != null);
+    assert(submit != null);
+    return hipGirthChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
+    TResult weightChanged(WeightChangedUserDataEvent value),
+    TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
+    TResult loadData(LoadDataUserDataEvent value),
+    TResult submit(SubmitUserDataEvent value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (hipGirthChanged != null) {
+      return hipGirthChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class HipGirthChangedUserDataEvent extends UserAdditionDataEvent {
+  const HipGirthChangedUserDataEvent._() : super._();
+  const factory HipGirthChangedUserDataEvent(String value) =
+      _$HipGirthChangedUserDataEvent;
+
+  String get value;
+  @JsonKey(ignore: true)
+  $HipGirthChangedUserDataEventCopyWith<HipGirthChangedUserDataEvent>
+      get copyWith;
 }
 
 /// @nodoc
@@ -603,12 +996,16 @@ class _$LoadDataUserDataEvent extends LoadDataUserDataEvent {
     @required TResult wristGirthChanged(String wristGirth),
     @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
     @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return loadData(userData);
@@ -620,6 +1017,8 @@ class _$LoadDataUserDataEvent extends LoadDataUserDataEvent {
     TResult wristGirthChanged(String wristGirth),
     TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
     TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
@@ -637,12 +1036,18 @@ class _$LoadDataUserDataEvent extends LoadDataUserDataEvent {
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return loadData(this);
@@ -654,6 +1059,9 @@ class _$LoadDataUserDataEvent extends LoadDataUserDataEvent {
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),
@@ -718,12 +1126,16 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
     @required TResult wristGirthChanged(String wristGirth),
     @required TResult weightChanged(String weight),
     @required TResult heightChanged(String height),
+    @required TResult waistCircumferenceChanged(String value),
+    @required TResult hipGirthChanged(String value),
     @required TResult loadData(UserData userData),
     @required TResult submit(),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return submit();
@@ -735,6 +1147,8 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
     TResult wristGirthChanged(String wristGirth),
     TResult weightChanged(String weight),
     TResult heightChanged(String height),
+    TResult waistCircumferenceChanged(String value),
+    TResult hipGirthChanged(String value),
     TResult loadData(UserData userData),
     TResult submit(),
     @required TResult orElse(),
@@ -752,12 +1166,18 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
     @required TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     @required TResult weightChanged(WeightChangedUserDataEvent value),
     @required TResult heightChanged(HeightChangedUserDataEvent value),
+    @required
+        TResult waistCircumferenceChanged(
+            WaistCircumferenceChangedUserDataEvent value),
+    @required TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     @required TResult loadData(LoadDataUserDataEvent value),
     @required TResult submit(SubmitUserDataEvent value),
   }) {
     assert(wristGirthChanged != null);
     assert(weightChanged != null);
     assert(heightChanged != null);
+    assert(waistCircumferenceChanged != null);
+    assert(hipGirthChanged != null);
     assert(loadData != null);
     assert(submit != null);
     return submit(this);
@@ -769,6 +1189,9 @@ class _$SubmitUserDataEvent extends SubmitUserDataEvent {
     TResult wristGirthChanged(WristGirthChangedUserDataEvent value),
     TResult weightChanged(WeightChangedUserDataEvent value),
     TResult heightChanged(HeightChangedUserDataEvent value),
+    TResult waistCircumferenceChanged(
+        WaistCircumferenceChangedUserDataEvent value),
+    TResult hipGirthChanged(HipGirthChangedUserDataEvent value),
     TResult loadData(LoadDataUserDataEvent value),
     TResult submit(SubmitUserDataEvent value),
     @required TResult orElse(),

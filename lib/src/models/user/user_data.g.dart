@@ -20,19 +20,25 @@ class UserDataAdapter extends TypeAdapter<UserData> {
       height: fields[1] as double,
       weight: fields[0] as double,
       wristGirth: fields[2] as double,
+      waistCircumference: fields[3] as double,
+      hipGirth: fields[4] as double,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserData obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.weight)
       ..writeByte(1)
       ..write(obj.height)
       ..writeByte(2)
-      ..write(obj.wristGirth);
+      ..write(obj.wristGirth)
+      ..writeByte(3)
+      ..write(obj.waistCircumference)
+      ..writeByte(4)
+      ..write(obj.hipGirth);
   }
 
   @override

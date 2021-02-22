@@ -19,7 +19,6 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       appBar: const UserAppBar(),
       body: GridView(
-        shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -47,7 +46,7 @@ class HomeScreen extends StatelessWidget {
           ),
           ActivityCard(
             label: 'Вес',
-            color: const Color(0xFFE0E8F1),
+            color: const Color(0xFFE8E0F1),
             imageName: 'scale',
             onTap: () {
               NavigationManager.instance.pushNamed(
@@ -79,7 +78,7 @@ class HomeScreen extends StatelessWidget {
             },
           ),
           ActivityCard(
-            label: 'Киллокалории',
+            label: 'Килокалории',
             color: const Color(0xFFE2F1E0),
             imageName: 'spinach',
             onTap: () {
@@ -107,6 +106,22 @@ class HomeScreen extends StatelessWidget {
                   color: Color(0xFFF1E0E0),
                   imageName: 'ic_water',
                   unit: 'л',
+                ),
+              );
+            },
+          ),
+          ActivityCard(
+            label: 'Талия и бедра',
+            color: const Color(0xFFFFF1D3),
+            imageName: 'hip_waist',
+            onTap: () {
+              NavigationManager.instance.pushNamed(
+                '/activity',
+                arguments: const Activity(
+                  helpText: 'Расчет соотношения талия - бедра',
+                  data: ActivityValue.hipWaist,
+                  color: Color(0xFFFFF1D3),
+                  imageName: 'ic_hip_waist',
                 ),
               );
             },

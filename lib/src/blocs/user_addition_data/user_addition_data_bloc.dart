@@ -4,6 +4,8 @@ import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:health_balance/src/blocs/user/user_bloc.dart';
 import 'package:health_balance/src/formz/user_data/height.dart';
+import 'package:health_balance/src/formz/user_data/hip_girth.dart';
+import 'package:health_balance/src/formz/user_data/waist_circumference.dart';
 import 'package:health_balance/src/formz/user_data/weight.dart';
 import 'package:health_balance/src/formz/user_data/wrist_girth.dart';
 import 'package:health_balance/src/models/user/user_data.dart';
@@ -23,6 +25,12 @@ abstract class UserAdditionDataEvent with _$UserAdditionDataEvent {
   const factory UserAdditionDataEvent.heightChanged(String height) =
       HeightChangedUserDataEvent;
 
+  const factory UserAdditionDataEvent.waistCircumferenceChanged(String value) =
+      WaistCircumferenceChangedUserDataEvent;
+
+  const factory UserAdditionDataEvent.hipGirthChanged(String value) =
+      HipGirthChangedUserDataEvent;
+
   const factory UserAdditionDataEvent.loadData(UserData userData) =
       LoadDataUserDataEvent;
 
@@ -34,6 +42,8 @@ class UserAdditionDataState extends Equatable {
   final Height height;
   final Weight weight;
   final WristGirth wristGirth;
+  final WaistCircumference waistCircumference;
+  final HipGirth hipGirth;
   final bool isEdited;
 
   const UserAdditionDataState({
@@ -41,6 +51,8 @@ class UserAdditionDataState extends Equatable {
     this.height = const Height.pure(),
     this.weight = const Weight.pure(),
     this.wristGirth = const WristGirth.pure(),
+    this.hipGirth = const HipGirth.pure(),
+    this.waistCircumference = const WaistCircumference.pure(),
     this.isEdited = false,
   });
 
@@ -49,6 +61,8 @@ class UserAdditionDataState extends Equatable {
     Height height,
     Weight weight,
     WristGirth wristGirth,
+    WaistCircumference waistCircumference,
+    HipGirth hipGirth,
     bool isEdited,
   }) {
     return UserAdditionDataState(
@@ -57,6 +71,8 @@ class UserAdditionDataState extends Equatable {
       weight: weight ?? this.weight,
       wristGirth: wristGirth ?? this.wristGirth,
       isEdited: isEdited ?? this.isEdited,
+      waistCircumference: waistCircumference ?? this.waistCircumference,
+      hipGirth: hipGirth ?? this.hipGirth,
     );
   }
 
@@ -67,7 +83,10 @@ class UserAdditionDataState extends Equatable {
         status,
         weight,
         height,
+        waistCircumference,
         wristGirth,
+        hipGirth,
+        isEdited,
       ];
 }
 
@@ -83,9 +102,41 @@ class UserAdditionDataBLoC
         wristGirthChanged: _wristGirthChanged,
         weightChanged: _weightChanged,
         heightChanged: _heightChanged,
+        hipGirthChanged: _hipGirthChanged,
+        waistCircumferenceChanged: _waistCircumferenceChanged,
         loadData: _loadData,
         submit: _submit,
       );
+
+  Stream<UserAdditionDataState> _waistCircumferenceChanged(
+    String value,
+  ) async* {
+    final validator = WaistCircumference.dirty(value);
+    yield state.copyWith(
+      waistCircumference: validator,
+      status: Formz.validate([
+        validator,
+        state.height,
+        state.weight,
+        state.hipGirth,
+        state.wristGirth,
+      ]),
+    );
+  }
+
+  Stream<UserAdditionDataState> _hipGirthChanged(String value) async* {
+    final validator = HipGirth.dirty(value);
+    yield state.copyWith(
+      hipGirth: validator,
+      status: Formz.validate([
+        validator,
+        state.height,
+        state.weight,
+        state.wristGirth,
+        state.waistCircumference,
+      ]),
+    );
+  }
 
   Stream<UserAdditionDataState> _wristGirthChanged(String wristGirth) async* {
     final wristGirthValidator = WristGirth.dirty(wristGirth);
@@ -95,6 +146,8 @@ class UserAdditionDataBLoC
         wristGirthValidator,
         state.height,
         state.weight,
+        state.hipGirth,
+        state.waistCircumference,
       ]),
     );
   }
@@ -104,6 +157,10 @@ class UserAdditionDataBLoC
       wristGirth: WristGirth.dirty(userData.wristGirth.toString()),
       weight: Weight.dirty(userData.weight.toString()),
       height: Height.dirty(userData.height.toString()),
+      hipGirth: HipGirth.dirty(userData.hipGirth.toString()),
+      waistCircumference: WaistCircumference.dirty(
+        userData.waistCircumference.toString(),
+      ),
     );
   }
 
@@ -115,6 +172,8 @@ class UserAdditionDataBLoC
         weightValidator,
         state.height,
         state.wristGirth,
+        state.hipGirth,
+        state.waistCircumference,
       ]),
     );
   }
@@ -127,24 +186,21 @@ class UserAdditionDataBLoC
         heightValidator,
         state.weight,
         state.wristGirth,
+        state.hipGirth,
+        state.waistCircumference,
       ]),
     );
   }
 
   Stream<UserAdditionDataState> _submit() async* {
-    final isValid = Formz.validate([
-      state.height,
-      state.weight,
-      state.wristGirth,
-    ]);
-    if (isValid == FormzStatus.valid) {
-      final UserData userData = UserData(
-        wristGirth: state.wristGirth.doubleValue,
-        height: state.height.doubleValue,
-        weight: state.weight.doubleValue,
-      );
+    final UserData userData = UserData(
+      wristGirth: state.wristGirth.doubleValue,
+      height: state.height.doubleValue,
+      weight: state.weight.doubleValue,
+      hipGirth: state.hipGirth.doubleValue,
+      waistCircumference: state.waistCircumference.doubleValue,
+    );
 
-      _userBLoC.add(UserEvent.update(userData));
-    }
+    _userBLoC.add(UserEvent.update(userData));
   }
 }

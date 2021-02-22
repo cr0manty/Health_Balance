@@ -10,26 +10,41 @@ class UserData extends HiveObject {
   final double height;
   @HiveField(2)
   final double wristGirth;
+  @HiveField(3)
+  final double waistCircumference;
+  @HiveField(4)
+  final double hipGirth;
 
   UserData({
     this.height,
     this.weight,
     this.wristGirth,
+    this.waistCircumference,
+    this.hipGirth,
   });
 
   UserData copyWith({
     double weight,
     double height,
     double wristGirth,
+    double waistCircumference,
+    double hipGirth,
   }) {
     return UserData(
       weight: weight ?? this.weight,
       height: height ?? this.height,
       wristGirth: wristGirth ?? this.wristGirth,
+      waistCircumference: waistCircumference ?? this.waistCircumference,
+      hipGirth: hipGirth ?? this.hipGirth,
     );
   }
 
-  bool get isNotEmpty => weight != null && height != null && wristGirth != null;
+  bool get isNotEmpty =>
+      weight != null &&
+      height != null &&
+      wristGirth != null &&
+      hipGirth != null &&
+      waistCircumference != null;
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
@@ -39,6 +54,8 @@ class UserData extends HiveObject {
           runtimeType == other.runtimeType &&
           weight == other.weight &&
           height == other.height &&
+          hipGirth == other.hipGirth &&
+          waistCircumference == other.waistCircumference &&
           wristGirth == other.wristGirth;
 
   @override
